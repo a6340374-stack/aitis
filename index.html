@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- ===== Primary SEO ===== -->
+<title>Aigiz Project — автоматизация бизнеса: Telegram-боты, воронки, CRM, сайты</title>
+<meta name="description" content="Автоматизация бизнес-процессов для малого бизнеса: Telegram-боты с приёмом оплат, воронки продаж, автоматизация на n8n, AI-контент, сайты и CRM. Сайт — от 1 дня, бот — от 3 дней. Месяц сопровождения." />
+<meta name="keywords" content="автоматизация бизнеса, телеграм бот на заказ, разработка телеграм ботов, воронки продаж, n8n, CRM для малого бизнеса, чат-бот с оплатой, AI-контент, разработка лендинга" />
+<meta name="author" content="Aigiz Project" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0b0d" />
+<meta name="yandex-verification" content="" />
+<meta name="google-site-verification" content="" />
+<link rel="canonical" href="https://aigizproject.ru/" />
+
+<!-- ===== Open Graph ===== -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Aigiz Project" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:title" content="Aigiz Project — автоматизация, которая возвращает время" />
+<meta property="og:description" content="Системы, которые работают вместо рутины. Telegram-боты, воронки, AI-контент, сайты и CRM для малого бизнеса." />
+<meta property="og:url" content="https://aigizproject.ru/" />
+<meta property="og:image" content="https://aigizproject.ru/aigiz.jpg" />
+<meta property="og:image:alt" content="Aigiz Project — автоматизация бизнес-процессов" />
+
+<!-- ===== Twitter ===== -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Aigiz Project — автоматизация, которая возвращает время" />
+<meta name="twitter:description" content="Telegram-боты, воронки, AI-контент, сайты и CRM для малого бизнеса. Собираем один раз — работает вместо рутины." />
+<meta name="twitter:image" content="https://aigizproject.ru/aigiz.jpg" />
+
+<!-- ===== Favicon (SVG, без отдельного файла) ===== -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233fe0a0'/%3E%3Ctext x='16' y='23' font-family='Arial,sans-serif' font-size='20' font-weight='bold' text-anchor='middle' fill='%2304130c'%3EA%3C/text%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="aigiz.jpg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<!-- ===== Structured data (Schema.org) ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Aigiz Project",
+  "description": "Автоматизация бизнес-процессов для малого бизнеса: Telegram-боты, воронки продаж, автоматизация на n8n, AI-контент, разработка сайтов и CRM.",
+  "url": "https://aigizproject.ru/",
+  "image": "https://aigizproject.ru/aigiz.jpg",
+  "telephone": "+7-999-132-18-01",
+  "priceRange": "$$",
+  "areaServed": { "@type": "Country", "name": "Россия" },
+  "founder": { "@type": "Person", "name": "Айгиз" },
+  "sameAs": [ "https://t.me/Aigiz_Project" ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+7-999-132-18-01",
+    "contactType": "sales",
+    "availableLanguage": "Russian"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Услуги автоматизации",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Разработка Telegram-ботов (заявки, продажи, оплата, CRM)" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Воронки продаж" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Автоматизация процессов на n8n" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI-контент-системы" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Разработка сайтов, лендингов и CRM" } }
+    ]
+  }
+}
+</script>
+
+<style>
+/* ============================================================
+   AIGIZ PROJECT — landing
+   Theme lock: DARK. One accent: emerald (#3fe0a0).
+   Radius lock: cards 16px, buttons pill, inputs 12px.
+   ============================================================ */
+
+:root{
+  --bg:        #0a0b0d;
+  --bg-2:      #101216;
+  --surface:   #14171c;
+  --surface-2: #181c22;
+  --line:      rgba(255,255,255,.08);
+  --line-2:    rgba(255,255,255,.14);
+  --text:      #f4f6f8;
+  --muted:     #969ba4;
+  --muted-2:   #6b7178;
+  --accent:    #3fe0a0;
+  --accent-dim:#2bb37e;
+  --accent-ink:#04130c;
+  --glow:      rgba(63,224,160,.18);
+  --maxw:      1180px;
+  --r-card:    16px;
+  --r-input:   12px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--accent);color:var(--accent-ink)}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+section{position:relative}
+
+/* ---------- ambient background ---------- */
+.ambient{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.ambient::before{
+  content:"";position:absolute;top:-15%;left:50%;
+  width:900px;height:900px;border-radius:50%;
+  background:radial-gradient(circle, var(--glow) 0%, transparent 60%);
+  filter:blur(20px);
+  transform:translateX(-50%);
+  animation:breathe 12s ease-in-out infinite;
+}
+@keyframes breathe{
+  0%,100%{opacity:.55;transform:translateX(-50%) scale(1)}
+  50%{opacity:.85;transform:translateX(-50%) scale(1.12)}
+}
+.grid-bg{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+  background-size:54px 54px;
+  /* еле заметна по всей странице, чуть ярче у верха, мягко гаснет к краям */
+  mask-image:radial-gradient(ellipse 130% 90% at 50% 0%, #000 60%, rgba(0,0,0,.45) 100%);
+  -webkit-mask-image:radial-gradient(ellipse 130% 90% at 50% 0%, #000 60%, rgba(0,0,0,.45) 100%);
+  animation:gridDrift 40s linear infinite;
+}
+@keyframes gridDrift{
+  0%{background-position:0 0,0 0}
+  100%{background-position:54px 54px,54px 54px}
+}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-weight:600;font-size:15px;line-height:1;
+  padding:14px 24px;border-radius:999px;
+  border:1px solid transparent;cursor:pointer;
+  transition:transform .15s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+  white-space:nowrap;
+}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn-primary{background:var(--accent);color:var(--accent-ink);box-shadow:0 0 0 0 var(--glow)}
+.btn-primary:hover{box-shadow:0 8px 30px -8px var(--glow);background:#54e9af}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn svg{width:18px;height:18px;flex:none}
+
+/* ---------- nav ---------- */
+header.nav{position:sticky;top:0;z-index:50;
+  backdrop-filter:saturate(140%) blur(14px);
+  background:rgba(10,11,13,.72);
+  border-bottom:1px solid transparent;transition:border-color .3s ease}
+header.nav.scrolled{border-bottom-color:var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.02em}
+.logo .mark{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+  background:linear-gradient(140deg,var(--accent),var(--accent-dim));color:var(--accent-ink);
+  font-weight:800;font-size:16px;box-shadow:0 4px 18px -6px var(--glow)}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{color:var(--muted);font-size:15px;font-weight:500;transition:color .18s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);cursor:pointer}
+
+/* ---------- hero ---------- */
+.hero{padding:78px 0 96px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:600;color:var(--accent);
+  border:1px solid var(--line-2);border-radius:999px;padding:7px 14px;margin-bottom:26px;
+  background:rgba(63,224,160,.06)}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 0 0 var(--accent);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(63,224,160,.55)}70%{box-shadow:0 0 0 9px rgba(63,224,160,0)}100%{box-shadow:0 0 0 0 rgba(63,224,160,0)}}
+.hero h1{font-size:clamp(40px,6vw,66px);line-height:1.02;letter-spacing:-.03em;font-weight:800}
+.hero h1 .accent{color:var(--accent)}
+.hero p.sub{margin-top:24px;font-size:clamp(16px,2vw,19px);color:var(--muted);max-width:32ch}
+/* terminal-typing subtitle (command + output) */
+.hero p.sub.term{
+  margin-top:22px;max-width:48ch;
+  font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
+  font-size:clamp(13.5px,1.6vw,15.5px);line-height:1.7;
+}
+.sub.term .term-cmd,.sub.term .term-out{display:block}
+.sub.term .term-cmd{color:var(--muted)}
+.sub.term .term-out{color:#c7ccd3;margin-top:6px}
+.sub.term .prompt{color:var(--muted-2);-webkit-user-select:none;user-select:none}
+.sub.term .cmd-type{color:var(--accent);font-weight:600}
+.sub.term .prompt-out{color:var(--accent);font-weight:700;-webkit-user-select:none;user-select:none}
+.sub.term .caret{
+  display:inline-block;width:8px;height:1.05em;margin-left:2px;vertical-align:-2px;
+  background:var(--accent);border-radius:1px;box-shadow:0 0 6px var(--glow);
+  animation:caret-blink 1.05s steps(1,end) infinite;
+}
+.sub.term .caret.hidden{display:none}
+@keyframes caret-blink{0%,50%{opacity:1}50.01%,100%{opacity:0}}
+.hero-actions{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}
+.hero-meta{display:flex;gap:28px;margin-top:42px;flex-wrap:wrap}
+.hero-meta .item{display:flex;flex-direction:column;gap:2px}
+.hero-meta .num{font-size:26px;font-weight:800;letter-spacing:-.02em}
+.hero-meta .lbl{font-size:13px;color:var(--muted-2)}
+
+/* ---------- hero visual: automation flow ---------- */
+.flow{position:relative;aspect-ratio:1/1;width:100%;max-width:460px;margin:0 auto}
+.flow svg{width:100%;height:100%;overflow:visible}
+.node{fill:var(--surface);stroke:var(--line-2);stroke-width:1.5}
+.node-accent{fill:rgba(63,224,160,.1);stroke:var(--accent);stroke-width:1.5}
+.node-ico{stroke:var(--text);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.node-ico-accent{stroke:var(--accent)}
+.link-line{stroke:var(--line-2);stroke-width:1.5;fill:none}
+.pulse-line{stroke:var(--accent);stroke-width:2;fill:none;stroke-dasharray:6 220;filter:drop-shadow(0 0 4px var(--glow))}
+.flow-tag{position:absolute;background:var(--surface);border:1px solid var(--line);
+  border-radius:10px;padding:8px 12px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px;
+  box-shadow:0 10px 30px -12px #000}
+.flow-tag .d{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.flow-tag.t1{top:6%;left:-6%;animation:float 6s ease-in-out infinite}
+.flow-tag.t2{bottom:14%;right:-8%;animation:float 7s ease-in-out infinite .6s}
+.flow-tag.t3{bottom:-2%;left:8%;animation:float 6.5s ease-in-out infinite 1.2s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+/* ---------- generic section ---------- */
+.sec{padding:92px 0}
+.sec-head{max-width:640px;margin-bottom:52px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.sec h2{font-size:clamp(30px,4.4vw,46px);line-height:1.05;letter-spacing:-.025em;font-weight:800}
+.sec-head p{margin-top:18px;font-size:17px;color:var(--muted)}
+
+/* ---------- pains ---------- */
+.pains{background:linear-gradient(180deg,transparent, rgba(255,255,255,.012))}
+.pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.pain{display:flex;gap:16px;padding:26px;border:1px solid var(--line);border-radius:var(--r-card);
+  background:var(--surface);transition:border-color .2s, transform .2s}
+.pain:hover{border-color:var(--line-2);transform:translateY(-2px)}
+.pain .x{flex:none;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
+  background:rgba(255,90,90,.1);color:#ff6b6b}
+.pain .x svg{width:20px;height:20px}
+.pain h3{font-size:17px;font-weight:700;margin-bottom:4px}
+.pain p{font-size:15px;color:var(--muted)}
+
+/* ---------- services (bento) ---------- */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.card{border:1px solid var(--line);border-radius:var(--r-card);background:var(--surface);
+  padding:30px;position:relative;overflow:hidden;transition:border-color .25s, transform .25s}
+.card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.card .ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:20px;
+  background:rgba(63,224,160,.1);border:1px solid rgba(63,224,160,.22)}
+.card .ico svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:20px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+.card p{font-size:15px;color:var(--muted)}
+.card ul{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.card ul li{font-size:13px;color:var(--muted);background:var(--surface-2);border:1px solid var(--line);
+  padding:5px 11px;border-radius:999px}
+.card.span-3{grid-column:span 3}
+.card.span-2{grid-column:span 2}
+.card.feature{grid-column:span 3;background:
+  radial-gradient(120% 120% at 100% 0%, rgba(63,224,160,.10), transparent 55%), var(--surface)}
+.card .glowline{position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(400px 80px at var(--mx,50%) 0%, rgba(63,224,160,.10), transparent 70%);
+  opacity:0;transition:opacity .3s}
+.card:hover .glowline{opacity:1}
+
+/* ---------- how / value ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);
+  border-radius:var(--r-card);overflow:hidden;background:var(--surface)}
+.step{padding:36px 30px;border-right:1px solid var(--line);position:relative}
+.step:last-child{border-right:none}
+.step .n{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:18px;
+  display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;
+  border-radius:50%;border:1px solid rgba(63,224,160,.3);background:rgba(63,224,160,.07)}
+.step h3{font-size:19px;font-weight:700;margin-bottom:8px}
+.step p{font-size:15px;color:var(--muted)}
+
+/* ---------- cases ---------- */
+.cases{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.case{border:1px solid var(--line);border-radius:var(--r-card);background:var(--surface);
+  padding:34px;display:flex;flex-direction:column;gap:18px;transition:border-color .25s,transform .25s}
+.case:hover{border-color:var(--line-2);transform:translateY(-3px)}
+.case-top{display:flex;align-items:center;gap:14px}
+.case-av{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:18px;
+  background:linear-gradient(140deg,var(--accent),var(--accent-dim));color:var(--accent-ink);flex:none}
+.case-top .who{font-weight:700;font-size:17px}
+.case-top .role{font-size:14px;color:var(--muted)}
+.case .stat{display:flex;align-items:baseline;gap:12px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.case .stat .big{font-size:38px;font-weight:800;letter-spacing:-.03em;color:var(--accent);line-height:1}
+.case .stat .desc{font-size:14px;color:var(--muted)}
+.case .body{font-size:15px;color:var(--muted)}
+.case .body b{color:var(--text);font-weight:600}
+.case .tag{font-size:13px;color:var(--muted-2);display:flex;align-items:center;gap:7px}
+.case .tag .d{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+/* ---------- guarantee band ---------- */
+.band{border:1px solid var(--line);border-radius:var(--r-card);
+  background:radial-gradient(120% 160% at 0% 0%, rgba(63,224,160,.07), transparent 55%), var(--surface);
+  padding:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.band .b h3{font-size:15px;color:var(--muted);font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:9px}
+.band .b h3 svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:1.8}
+.band .b p{font-size:22px;font-weight:700;letter-spacing:-.01em}
+.band .b p span{color:var(--muted);font-weight:500;font-size:15px}
+
+/* ---------- about (personal brand) ---------- */
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:54px;align-items:center}
+.about-photo{position:relative;border-radius:var(--r-card);overflow:hidden;
+  border:1px solid var(--line-2);background:var(--surface)}
+.about-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/1;
+  filter:grayscale(1) contrast(1.05);transition:filter .5s ease, transform .6s ease}
+.about-photo:hover img{filter:grayscale(0) contrast(1)}
+.about-photo::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(160deg, transparent 55%, rgba(63,224,160,.14));mix-blend-mode:screen}
+.about-photo .badge{position:absolute;left:16px;bottom:16px;display:flex;align-items:center;gap:8px;
+  background:rgba(10,11,13,.7);backdrop-filter:blur(8px);border:1px solid var(--line-2);
+  border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600}
+.about-photo .badge .d{width:7px;height:7px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 0 0 var(--accent);animation:pulse 2.4s infinite}
+.about-text h2{font-size:clamp(28px,4vw,42px);line-height:1.08;letter-spacing:-.025em;font-weight:800}
+.about-text .lead{margin-top:20px;font-size:18px;color:var(--text)}
+.about-text p{margin-top:16px;font-size:16px;color:var(--muted);max-width:54ch}
+.about-text p b{color:var(--text);font-weight:600}
+.about-sign{margin-top:26px;display:flex;align-items:center;gap:14px}
+.about-sign .nm{font-weight:800;font-size:18px;letter-spacing:-.01em}
+.about-sign .rl{font-size:14px;color:var(--muted)}
+.about-actions{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+
+/* ---------- contact / form ---------- */
+.contact{padding:96px 0 40px}
+.contact-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:start}
+.contact-left h2{font-size:clamp(30px,4.4vw,46px);line-height:1.04;letter-spacing:-.025em;font-weight:800}
+.contact-left p{margin-top:18px;color:var(--muted);font-size:17px;max-width:42ch}
+.contact-channels{margin-top:34px;display:flex;flex-direction:column;gap:14px}
+.channel{display:flex;align-items:center;gap:15px;padding:16px 18px;border:1px solid var(--line);
+  border-radius:14px;background:var(--surface);transition:border-color .2s,transform .2s}
+.channel:hover{border-color:var(--accent);transform:translateY(-2px)}
+.channel .ci{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;flex:none;
+  background:rgba(63,224,160,.1)}
+.channel .ci svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.channel .ct .l{font-size:13px;color:var(--muted-2)}
+.channel .ct .v{font-size:17px;font-weight:700}
+
+.form-card{border:1px solid var(--line);border-radius:var(--r-card);background:var(--surface);padding:34px}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.field label{font-size:14px;font-weight:600}
+.field label .req{color:var(--accent)}
+.field input,.field textarea{
+  background:var(--bg-2);border:1px solid var(--line-2);border-radius:var(--r-input);
+  padding:14px 16px;color:var(--text);font-family:inherit;font-size:15px;width:100%;
+  transition:border-color .18s, box-shadow .18s}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted-2)}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(63,224,160,.15)}
+.field textarea{resize:vertical;min-height:96px}
+.field .help{font-size:13px;color:var(--muted-2)}
+.field .err{font-size:13px;color:#ff6b6b;display:none}
+.field.invalid input,.field.invalid textarea{border-color:#ff6b6b}
+.field.invalid .err{display:block}
+.form-card .btn-primary{width:100%;justify-content:center;font-size:16px;padding:16px}
+.form-note{font-size:13px;color:var(--muted-2);margin-top:14px;text-align:center}
+.form-status{margin-top:16px;padding:14px 16px;border-radius:12px;font-size:15px;display:none;align-items:center;gap:10px}
+.form-status.show{display:flex}
+.form-status.ok{background:rgba(63,224,160,.1);border:1px solid rgba(63,224,160,.3);color:var(--accent)}
+.form-status.bad{background:rgba(255,90,90,.1);border:1px solid rgba(255,90,90,.3);color:#ff7a7a}
+.btn-primary[disabled]{opacity:.6;cursor:wait}
+.spinner{width:17px;height:17px;border:2px solid rgba(4,19,12,.3);border-top-color:var(--accent-ink);
+  border-radius:50%;animation:spin .7s linear infinite;display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
+.foot-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.foot-inner .muted{color:var(--muted-2);font-size:14px}
+.foot-links{display:flex;gap:22px}
+.foot-links a{color:var(--muted);font-size:14px;transition:color .18s}
+.foot-links a:hover{color:var(--accent)}
+
+/* ---------- reveal animation ---------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .flow{max-width:380px}
+  .contact-grid{grid-template-columns:1fr;gap:40px}
+  .cases{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr;gap:32px}
+  .about-photo{max-width:380px}
+}
+@media (max-width:760px){
+  .nav-links{display:none}
+  .nav-toggle{display:grid;place-items:center}
+  .nav-links.open{display:flex;position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;
+    background:var(--bg-2);border-bottom:1px solid var(--line);padding:8px 0}
+  .nav-links.open a{padding:14px 24px;width:100%}
+  .nav-cta .btn-ghost{display:none}
+  .pain-grid{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr}
+  .card.span-3,.card.span-2,.card.feature{grid-column:auto}
+  .steps{grid-template-columns:1fr}
+  .step{border-right:none;border-bottom:1px solid var(--line)}
+  .step:last-child{border-bottom:none}
+  .band{grid-template-columns:1fr;gap:22px;padding:30px}
+  .hero-meta{gap:22px}
+  .sec{padding:68px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+  /* терминальный курсор оставляем живым — это часть смысла, а не декор */
+  .sub.term .caret{animation:caret-blink 1.05s steps(1,end) infinite!important}
+}
+</style>
+</head>
+<body>
+
+<div class="ambient"></div>
+<div class="grid-bg"></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="logo">
+      <span class="mark">A</span> Aigiz Project
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#services">Услуги</a>
+      <a href="#how">Как работаем</a>
+      <a href="#about">Обо мне</a>
+      <a href="#cases">Кейсы</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="https://t.me/Aigiz_Project" target="_blank" rel="noopener" class="btn btn-ghost">Telegram</a>
+      <a href="#contact" class="btn btn-primary">Оставить заявку</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Меню">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow"><span class="dot"></span> Автоматизация бизнес-процессов</span>
+      <h1>Автоматизация, которая <span class="accent">возвращает время</span></h1>
+      <p class="sub term">
+        <span class="term-cmd"><span class="prompt" aria-hidden="true">~/aigiz $&nbsp;</span><span class="cmd-type">run automation</span><span class="caret caret-cmd" aria-hidden="true"></span></span>
+        <span class="term-out"><span class="prompt-out" aria-hidden="true">▸&nbsp;</span><span class="type">Telegram-боты, воронки продаж и AI-системы для малого бизнеса. Собираем один раз — работают вместо рутины.</span><span class="caret caret-out hidden" aria-hidden="true"></span></span>
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">
+          Оставить заявку
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="https://t.me/Aigiz_Project" target="_blank" rel="noopener" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21.94 4.6 18.7 19.9c-.24 1.08-.88 1.34-1.78.84l-4.92-3.63-2.37 2.28c-.26.26-.48.48-.99.48l.35-5.02 9.13-8.25c.4-.35-.08-.55-.62-.2L4.2 13.04l-4.85-1.52c-1.06-.33-1.08-1.06.22-1.57L20.6 3.06c.88-.33 1.65.2 1.34 1.54z"/></svg>
+          Написать в Telegram
+        </a>
+      </div>
+      <div class="hero-meta">
+        <div class="item"><span class="num">от 1 дня</span><span class="lbl">сайт под ключ</span></div>
+        <div class="item"><span class="num">от 3 дней</span><span class="lbl">бот с магазином и админкой</span></div>
+        <div class="item"><span class="num">1 месяц</span><span class="lbl">сопровождения после сдачи</span></div>
+      </div>
+    </div>
+
+    <!-- automation flow visual -->
+    <div class="hero-visual reveal">
+      <div class="flow">
+        <div class="flow-tag t1"><span class="d"></span> Заявка пришла</div>
+        <div class="flow-tag t2"><span class="d"></span> Ответ за 10 минут</div>
+        <div class="flow-tag t3"><span class="d"></span> Оплата принята</div>
+        <svg viewBox="0 0 400 400" aria-hidden="true">
+          <!-- links -->
+          <path class="link-line" d="M200 70 V150" />
+          <path class="link-line" d="M200 250 V330" />
+          <path class="link-line" d="M115 200 H285" />
+          <path class="link-line" d="M200 150 C120 150 115 200 115 200" />
+          <path class="link-line" d="M200 150 C280 150 285 200 285 200" />
+          <path class="link-line" d="M115 200 C115 250 200 250 200 250" />
+          <path class="link-line" d="M285 200 C285 250 200 250 200 250" />
+          <!-- animated pulse along central spine -->
+          <path class="pulse-line" d="M200 70 V150 M200 250 V330">
+            <animate attributeName="stroke-dashoffset" from="226" to="0" dur="2.6s" repeatCount="indefinite"/>
+          </path>
+          <!-- center accent node -->
+          <g transform="translate(200,200)">
+            <circle class="node-accent" r="46"/>
+            <g transform="translate(-13,-13)">
+              <path class="node-ico node-ico-accent" d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/>
+            </g>
+          </g>
+          <!-- top node: telegram -->
+          <g transform="translate(200,45)">
+            <circle class="node" r="26"/>
+            <g transform="translate(-12,-11)"><path class="node-ico" d="M22 4 2 11l6 2 2 6 3-4 5 4 4-15z"/></g>
+          </g>
+          <!-- bottom node: payment -->
+          <g transform="translate(200,355)">
+            <circle class="node" r="26"/>
+            <g transform="translate(-12,-9)"><rect class="node-ico" x="1" y="2" width="22" height="15" rx="3"/><path class="node-ico" d="M1 7h22"/></g>
+          </g>
+          <!-- left node: CRM -->
+          <g transform="translate(90,200)">
+            <circle class="node" r="26"/>
+            <g transform="translate(-11,-11)"><path class="node-ico" d="M3 21V8l9-5 9 5v13M3 21h18M9 21v-6h6v6"/></g>
+          </g>
+          <!-- right node: AI -->
+          <g transform="translate(310,200)">
+            <circle class="node" r="26"/>
+            <g transform="translate(-11,-11)"><circle class="node-ico" cx="11" cy="11" r="3"/><path class="node-ico" d="M11 1v3M11 18v3M1 11h3M18 11h3M4 4l2 2M16 16l2 2M18 4l-2 2M6 16l-2 2"/></g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAINS ================= -->
+<section class="sec pains" id="pains">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Знакомо?</div>
+      <h2>Бизнес работает, а вы — вручную</h2>
+      <p>Пока всё держится на ручном труде, время уходит не на рост, а на однотипные действия. Вот где обычно теряются деньги.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain reveal">
+        <div class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div><h3>Рутина съедает часы</h3><p>Однообразные ответы, выставление счетов, ручной перенос данных — каждый день одно и то же.</p></div>
+      </div>
+      <div class="pain reveal">
+        <div class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div><h3>Заявки остаются без ответа</h3><p>Сообщения теряются в переписке — даже от тех, кто уже оплатил. Клиент уходит к тем, кто ответил.</p></div>
+      </div>
+      <div class="pain reveal">
+        <div class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
+        <div><h3>Нет единой картины</h3><p>Заявки в одном месте, оплаты в другом, переписки в третьем. Невозможно понять, что происходит.</p></div>
+      </div>
+      <div class="pain reveal">
+        <div class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div>
+        <div><h3>На перегруженном сайте теряются</h3><p>Слишком много блоков и кнопок — посетитель не понимает, что делать, и закрывает страницу.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Что я делаю</div>
+      <h2>Системы, которые работают вместо рутины</h2>
+      <p>Собираю под задачу: от Telegram-бота с приёмом оплат до полной автоматизации процессов и AI-контента.</p>
+    </div>
+    <div class="bento">
+      <div class="card feature reveal" data-glow>
+        <div class="glowline"></div>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M22 4 2 11l6 2 2 6 3-4 5 4 4-15z"/></svg></div>
+        <h3>Telegram-боты</h3>
+        <p>Приём заявок и продаж, поддержка, интеграция с CRM, приём оплат, автоответы. Магазин внутри бота с админкой для управления.</p>
+        <ul><li>Заявки и продажи</li><li>Приём оплат</li><li>Интеграция с CRM</li><li>Автоответы 24/7</li></ul>
+      </div>
+      <div class="card span-3 reveal" data-glow>
+        <div class="glowline"></div>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M19 9l-5 5-3-3-4 4"/></svg></div>
+        <h3>Воронки продаж</h3>
+        <p>Связка, которая ведёт клиента сама: контент → автоответ → бот → лендинг → оплата. Ничего не теряется на пути к покупке.</p>
+        <ul><li>Контент</li><li>Автоответ</li><li>Бот</li><li>Лендинг</li><li>Оплата</li></ul>
+      </div>
+      <div class="card span-2 reveal" data-glow>
+        <div class="glowline"></div>
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg></div>
+        <h3>Автоматизация на n8n</h3>
+        <p>Парсинг, обработка и синхронизация данных, уведомления. Сервисы общаются между собой без вашего участия.</p>
+      </div>
+      <div class="card span-2 reveal" data-glow>
+        <div class="glowline"></div>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3 4 7v6c0 4.5 3.4 7.3 8 8.5 4.6-1.2 8-4 8-8.5V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>AI-контент-системы</h3>
+        <p>Ролики, посты и сценарии на потоке: аватары и синтез голоса. Контент, который не нужно снимать вручную.</p>
+      </div>
+      <div class="card span-2 reveal" data-glow>
+        <div class="glowline"></div>
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>Сайты, лендинги и CRM</h3>
+        <p>Понятная страница, которая приводит к заявке, и CRM, где все диалоги и заказы видны как на ладони.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW ================= -->
+<section class="sec" id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Как это работает</div>
+      <h2>Собирается один раз — работает само</h2>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="n">1</div>
+        <h3>Разбираем задачу</h3>
+        <p>Смотрим, где теряется время и заявки. Определяем, что автоматизировать в первую очередь.</p>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h3>Собираю систему</h3>
+        <p>Настраиваю бота, воронку, CRM или сайт под ваш процесс. Сайт — от 1 дня, бот с магазином — от 3 дней.</p>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h3>Работает без вас</h3>
+        <p>Система принимает заявки и оплаты сама. Месяц сопровождаю, правлю и дорабатываю после сдачи.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="sec" id="about">
+  <div class="wrap about-grid">
+    <div class="about-photo reveal">
+      <img src="aigiz.jpg" alt="Айгиз — основатель Aigiz Project" loading="lazy" />
+      <span class="badge"><span class="d"></span> На связи</span>
+    </div>
+    <div class="about-text reveal">
+      <div class="kicker">Кто за проектом</div>
+      <h2>Привет, я Айгиз</h2>
+      <p class="lead">Собираю автоматизацию для малого бизнеса: ботов, воронки, CRM и сайты, которые работают вместо рутины.</p>
+      <p>Не передаю задачу на конвейер — <b>веду проект сам</b>, от разбора процесса до запуска. Вы получаете рабочую систему и понятный результат, а не набор настроек, в которых потом не разобраться.</p>
+      <p>После сдачи <b>месяц на связи</b>: правлю, дорабатываю и помогаю, пока всё не заработает как надо.</p>
+      <div class="about-sign">
+        <div class="case-av">A</div>
+        <div><div class="nm">Aigiz Project</div><div class="rl">Автоматизация бизнес-процессов</div></div>
+      </div>
+      <div class="about-actions">
+        <a href="#contact" class="btn btn-primary">Обсудить задачу</a>
+        <a href="https://t.me/Aigiz_Project" target="_blank" rel="noopener" class="btn btn-ghost">Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CASES ================= -->
+<section class="sec" id="cases">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Кейсы</div>
+      <h2>Что это даёт на практике</h2>
+    </div>
+    <div class="cases">
+      <div class="case reveal">
+        <div class="case-top">
+          <div class="case-av">А</div>
+          <div><div class="who">Алина</div><div class="role">Нутрициолог</div></div>
+        </div>
+        <p class="body">Внедрил CRM, где все диалоги и заявки из магазина видны как на ладони. До этого сообщение от <b>оплатившего клиента провисело без ответа больше 1,5 месяцев</b>.</p>
+        <div class="stat">
+          <span class="big">&lt;10 мин</span>
+          <span class="desc">ответ на заявку после внедрения — ни одна заявка не теряется</span>
+        </div>
+        <div class="tag"><span class="d"></span> CRM · магазин · автоматизация заявок</div>
+      </div>
+      <div class="case reveal">
+        <div class="case-top">
+          <div class="case-av">Д</div>
+          <div><div class="who">Дмитрий</div><div class="role">Мотоподбор</div></div>
+        </div>
+        <p class="body">Сделал лендинг под услугу мотоподбора — понятная страница, которая ведёт посетителя к заявке. <b>Клиенту понравился результат</b>, заявки приходят прямо с сайта.</p>
+        <div class="stat">
+          <span class="big">от 1 дня</span>
+          <span class="desc">лендинг под ключ с формой заявки и приёмом обращений</span>
+        </div>
+        <div class="tag"><span class="d"></span> Лендинг · форма заявок · приём обращений</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GUARANTEE BAND ================= -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="band reveal">
+      <div class="b">
+        <h3><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v6c0 4.5 3.4 7.3 8 8.5 4.6-1.2 8-4 8-8.5V7z"/></svg> Гарантия</h3>
+        <p>1 месяц <span>сопровождения, правок и доработок</span></p>
+      </div>
+      <div class="b">
+        <h3><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Сроки</h3>
+        <p>Сайт — от 1 дня <span>· бот с магазином — от 3 дней</span></p>
+      </div>
+      <div class="b">
+        <h3><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Контроль</h3>
+        <p>Всё под контролем <span>— ничего не теряется</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT / FORM ================= -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-left reveal">
+      <h2>Оставьте заявку — отвечу быстро</h2>
+      <p>Расскажите, что нужно автоматизировать. Предложу решение и сориентирую по срокам и цене.</p>
+      <div class="contact-channels">
+        <a class="channel" href="https://t.me/Aigiz_Project" target="_blank" rel="noopener">
+          <div class="ci"><svg viewBox="0 0 24 24"><path d="M22 4 2 11l6 2 2 6 3-4 5 4 4-15z"/></svg></div>
+          <div class="ct"><div class="l">Telegram (отвечаю быстрее всего)</div><div class="v">@Aigiz_Project</div></div>
+        </a>
+        <a class="channel" href="tel:+79991321801">
+          <div class="ci"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div>
+          <div class="ct"><div class="l">Телефон</div><div class="v">8 999 132 18 01</div></div>
+        </a>
+      </div>
+    </div>
+
+    <div class="form-card reveal">
+      <form id="leadForm" novalidate>
+        <div class="field" id="f-name">
+          <label for="name">Как вас зовут <span class="req">*</span></label>
+          <input type="text" id="name" name="name" placeholder="Айгиз" autocomplete="name" />
+          <span class="err">Укажите имя</span>
+        </div>
+        <div class="field" id="f-contact">
+          <label for="contact">Контакт для связи <span class="req">*</span></label>
+          <input type="text" id="contact" name="contact" placeholder="Телефон или @username в Telegram" autocomplete="tel" />
+          <span class="help">Куда написать или позвонить</span>
+          <span class="err">Оставьте телефон или Telegram</span>
+        </div>
+        <div class="field" id="f-task">
+          <label for="task">Что нужно автоматизировать?</label>
+          <textarea id="task" name="task" placeholder="Например: бот для приёма заявок и оплат, CRM, лендинг…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submitBtn">
+          <span class="spinner" id="spinner"></span>
+          <span id="btnText">Отправить заявку</span>
+        </button>
+        <div class="form-status" id="formStatus"></div>
+        <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку контактных данных для ответа на заявку.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap foot-inner">
+    <a href="#" class="logo"><span class="mark">A</span> Aigiz Project</a>
+    <div class="foot-links">
+      <a href="#services">Услуги</a>
+      <a href="#cases">Кейсы</a>
+      <a href="https://t.me/Aigiz_Project" target="_blank" rel="noopener">Telegram</a>
+      <a href="tel:+79991321801">8 999 132 18 01</a>
+    </div>
+    <div class="muted">© 2026 Aigiz Project. Автоматизация бизнес-процессов.</div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   CONFIG
+   WEBHOOK_URL — адрес твоего Google Apps Script веб-приложения.
+   Деплой: Apps Script → Deploy → New deployment → Web app →
+   Execute as: Me, Who has access: Anyone → копируешь URL .../exec
+   Пока пусто — форма предложит написать в Telegram.
+   ============================================================ */
+const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbw06Ex3cWOhubZA9m2buH_OR_4G3GhHH3sqP7Rxw9l8TbHT2XnK3Q-74lEDkWyrkXA/exec";
+const TELEGRAM_URL = "https://t.me/Aigiz_Project";
+
+/* ---- nav: scrolled state + mobile menu ---- */
+const nav = document.getElementById('nav');
+const navLinks = document.getElementById('navLinks');
+const navToggle = document.getElementById('navToggle');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 8), {passive:true});
+navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.addEventListener('click', e => { if(e.target.tagName==='A') navLinks.classList.remove('open'); });
+
+/* ---- reveal on scroll ---- */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+}, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach((el,i) => { el.style.transitionDelay = (i%3)*0.06+'s'; io.observe(el); });
+
+/* ---- card hover glow follows cursor ---- */
+document.querySelectorAll('[data-glow]').forEach(card => {
+  card.addEventListener('pointermove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+  });
+});
+
+/* ---- terminal typing in hero subtitle (command -> output) ---- */
+(function(){
+  const p = document.querySelector('.sub.term');
+  if(!p) return;
+  const cmdEl = p.querySelector('.cmd-type');
+  const outEl = p.querySelector('.type');
+  const caretCmd = p.querySelector('.caret-cmd');
+  const caretOut = p.querySelector('.caret-out');
+  if(!cmdEl || !outEl) return;
+
+  const cmdFull = cmdEl.textContent;
+  const outFull = outEl.textContent;
+
+  // резервируем высоту по полному содержимому, чтобы кнопки не прыгали
+  p.style.minHeight = p.offsetHeight + 'px';
+
+  cmdEl.textContent = '';
+  outEl.textContent = '';
+
+  function type(el, full, done){
+    let i = 0;
+    (function tick(){
+      el.textContent = full.slice(0, i);
+      const ch = full[i] || '';
+      i++;
+      if(i <= full.length){
+        let delay = 20 + Math.random()*45;
+        if(ch === '.' || ch === '—') delay = 360;
+        else if(ch === ',') delay = 170;
+        setTimeout(tick, delay);
+      } else if(done){ setTimeout(done, 420); }
+    })();
+  }
+
+  // 1) печатаем команду  2) переносим курсор вниз  3) печатаем вывод
+  setTimeout(() => {
+    type(cmdEl, cmdFull, () => {
+      caretCmd.classList.add('hidden');
+      caretOut.classList.remove('hidden');
+      type(outEl, outFull);
+    });
+  }, 450);
+})();
+
+/* ---- form validation + submit ---- */
+const form = document.getElementById('leadForm');
+const statusEl = document.getElementById('formStatus');
+const submitBtn = document.getElementById('submitBtn');
+const spinner = document.getElementById('spinner');
+const btnText = document.getElementById('btnText');
+
+function setInvalid(id, bad){ document.getElementById(id).classList.toggle('invalid', bad); }
+function showStatus(type, msg){
+  statusEl.className = 'form-status show ' + type;
+  statusEl.innerHTML = msg;
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = form.name.value.trim();
+  const contact = form.contact.value.trim();
+  const task = form.task.value.trim();
+
+  let ok = true;
+  setInvalid('f-name', !name); if(!name) ok=false;
+  setInvalid('f-contact', !contact); if(!contact) ok=false;
+  if(!ok){ showStatus('bad','Заполните обязательные поля.'); return; }
+
+  // текст заявки, который придёт в Telegram через релей
+  const text =
+    '🟢 Новая заявка с сайта — Aigiz Project\n' +
+    '────────────────\n' +
+    'Имя: ' + name + '\n' +
+    'Контакт: ' + contact + '\n' +
+    'Задача: ' + (task || '—') + '\n' +
+    'Время: ' + new Date().toLocaleString('ru-RU');
+
+  // loading state
+  submitBtn.disabled = true;
+  spinner.style.display = 'inline-block';
+  btnText.textContent = 'Отправляю…';
+  statusEl.className = 'form-status';
+
+  // если релей не настроен — мягкий фолбэк на Telegram-чат
+  if(!WEBHOOK_URL){
+    const tg = encodeURIComponent('Заявка с сайта\nИмя: '+name+'\nКонтакт: '+contact+'\nЗадача: '+(task||'—'));
+    showStatus('ok', 'Релей ещё не подключён. Открываю Telegram — отправьте заявку туда 👉');
+    setTimeout(()=> window.open(TELEGRAM_URL+'?text='+tg, '_blank'), 600);
+    resetBtn(); return;
+  }
+
+  try{
+    // Apps Script не отдаёт CORS-заголовки, поэтому шлём no-cors + text/plain
+    // (тело JSON {text} релей читает из e.postData.contents и парсит сам).
+    await fetch(WEBHOOK_URL, {
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify({ text })
+    });
+    // при no-cors ответ непрозрачный — если fetch не упал, заявка ушла
+    showStatus('ok', '✓ Заявка отправлена! Свяжусь с вами в ближайшее время.');
+    form.reset();
+  }catch(err){
+    showStatus('bad', 'Не удалось отправить. Напишите, пожалуйста, в <a href="'+TELEGRAM_URL+'" target="_blank" style="color:inherit;text-decoration:underline">Telegram</a>.');
+  }finally{
+    resetBtn();
+  }
+});
+
+function resetBtn(){
+  submitBtn.disabled = false;
+  spinner.style.display = 'none';
+  btnText.textContent = 'Отправить заявку';
+}
+
+/* clear invalid on input */
+['name','contact'].forEach(id=>{
+  form[id].addEventListener('input', ()=> setInvalid('f-'+id, false));
+});
+</script>
+</body>
+</html>
