@@ -136,35 +136,9 @@ section{position:relative}
 .grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.04;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-/* ---------- ambient background ---------- */
-.ambient{position:fixed;inset:0;z-index:-1;pointer-events:none}
-.ambient::before{
-  content:"";position:absolute;top:-15%;left:50%;
-  width:900px;height:900px;border-radius:50%;
-  background:radial-gradient(circle, var(--glow) 0%, transparent 60%);
-  filter:blur(20px);
-  transform:translateX(-50%);
-  animation:breathe 12s ease-in-out infinite;
-}
-@keyframes breathe{
-  0%,100%{opacity:.55;transform:translateX(-50%) scale(1)}
-  50%{opacity:.85;transform:translateX(-50%) scale(1.12)}
-}
-.grid-bg{
-  position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
-  background-size:54px 54px;
-  /* еле заметна по всей странице, чуть ярче у верха, мягко гаснет к краям */
-  mask-image:radial-gradient(ellipse 130% 90% at 50% 0%, #000 60%, rgba(0,0,0,.45) 100%);
-  -webkit-mask-image:radial-gradient(ellipse 130% 90% at 50% 0%, #000 60%, rgba(0,0,0,.45) 100%);
-  animation:gridDrift 40s linear infinite;
-}
-@keyframes gridDrift{
-  0%{background-position:0 0,0 0}
-  100%{background-position:54px 54px,54px 54px}
-}
+/* ---------- фон ----------
+   Ни свечения, ни сетки: и то и другое — дежурная «атмосфера» тёмных страниц.
+   Остаётся плоский фон и еле заметное зерно, чтобы чёрный не был мёртвым. */
 
 /* ---------- buttons ---------- */
 .btn{
@@ -176,8 +150,8 @@ section{position:relative}
   white-space:nowrap;
 }
 .btn:active{transform:translateY(1px) scale(.99)}
-.btn-primary{background:var(--accent);color:var(--accent-ink);box-shadow:0 0 0 0 var(--glow)}
-.btn-primary:hover{box-shadow:0 8px 30px -8px var(--glow);background:#54e9af}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{background:#54e9af}
 .btn-ghost{background:transparent;color:var(--text);border-color:var(--line-2)}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 .btn svg{width:18px;height:18px;flex:none}
@@ -189,16 +163,22 @@ header.nav{position:sticky;top:0;z-index:50;
   border-bottom:1px solid transparent;transition:border-color .3s ease}
 header.nav.scrolled{border-bottom-color:var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:18px;letter-spacing:-.02em}
-.logo .mark{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
-  background:linear-gradient(140deg,var(--accent),var(--accent-dim));color:var(--accent-ink);
-  font-weight:800;font-size:16px;box-shadow:0 4px 18px -6px var(--glow)}
+/* Логотип — не плитка с буквой, а приглашение командной строки:
+   рамка без заливки, внутри тильда. Тем же языком говорит первый экран. */
+.logo{display:flex;align-items:center;gap:11px;font-weight:500;font-size:17px;letter-spacing:.01em;color:var(--muted)}
+.logo .mark{width:28px;height:28px;border-radius:5px;display:grid;place-items:center;
+  border:1px solid var(--accent);color:var(--accent);
+  font-family:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-weight:500;font-size:15px;line-height:1;padding-bottom:3px}
+.logo .word{color:var(--text);white-space:nowrap}
+.logo .dim{color:var(--muted)}
+.logo:hover .mark{background:var(--accent);color:var(--accent-ink)}
 .nav-links{display:flex;align-items:center;gap:30px}
 .nav-links a{color:var(--muted);font-size:15px;font-weight:500;transition:color .18s;position:relative}
 .nav-links a:hover{color:var(--text)}
 .nav-links a.active{color:var(--text)}
 .nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;
-  border-radius:2px;background:var(--accent);box-shadow:0 0 8px var(--glow)}
+  border-radius:2px;background:var(--accent)}
 .nav-cta{display:flex;align-items:center;gap:14px}
 .nav-toggle{display:none;background:none;border:none;color:var(--text);cursor:pointer}
 
@@ -271,7 +251,7 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .pain{display:flex;gap:16px;padding:26px;border:1px solid var(--line);border-radius:var(--r-card);
   background:var(--surface);transition:border-color .2s, transform .2s}
-.pain:hover{border-color:var(--line-2);transform:translateY(-2px)}
+.pain:hover{border-color:var(--line-2)}
 .pain .x{flex:none;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
   background:rgba(255,90,90,.1);color:#ff6b6b}
 .pain .x svg{width:20px;height:20px}
@@ -282,7 +262,7 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
 .card{border:1px solid var(--line);border-radius:var(--r-card);background:var(--surface);
   padding:30px;position:relative;overflow:hidden;transition:border-color .25s, transform .25s}
-.card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.card:hover{border-color:var(--accent)}
 .card .ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:20px;
   background:rgba(63,224,160,.1);border:1px solid rgba(63,224,160,.22)}
 .card .ico svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
@@ -315,12 +295,17 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .cases{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 .case{border:1px solid var(--line);border-radius:var(--r-card);background:var(--surface);
   padding:34px;display:flex;flex-direction:column;gap:18px;transition:border-color .25s,transform .25s}
-.case:hover{border-color:var(--line-2);transform:translateY(-3px)}
-.case-top{display:flex;align-items:center;gap:14px}
-.case-av{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:18px;
-  background:linear-gradient(140deg,var(--accent),var(--accent-dim));color:var(--accent-ink);flex:none}
-.case-top .who{font-weight:700;font-size:17px}
-.case-top .role{font-size:14px;color:var(--muted)}
+.case:hover{border-color:var(--line-2)}
+/* Кто это — набирается текстом, а не кружком с инициалом. Имя капсом, но без
+   разрядки: так оно не путается с зелёным kicker'ом над заголовком секции. */
+.case-top{padding-bottom:16px;border-bottom:1px solid var(--line)}
+.case-top .who{font-weight:600;font-size:15px;text-transform:uppercase;letter-spacing:.03em}
+.case-top .role{display:inline;font-size:15px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;font-weight:400}
+.case-top .role::before{content:" · ";color:var(--muted-2)}
+.sign-mark{width:42px;height:42px;border-radius:7px;display:grid;place-items:center;flex:none;
+  border:1px solid var(--accent);color:var(--accent);
+  font-family:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:20px;line-height:1;padding-bottom:5px}
 .case .stat{display:flex;align-items:baseline;gap:12px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .case .stat .big{font-size:38px;font-weight:800;letter-spacing:-.03em;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
 .case .stat .desc{font-size:14px;color:var(--muted)}
@@ -369,7 +354,7 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .contact-channels{margin-top:34px;display:flex;flex-direction:column;gap:14px}
 .channel{display:flex;align-items:center;gap:15px;padding:16px 18px;border:1px solid var(--line);
   border-radius:14px;background:var(--surface);transition:border-color .2s,transform .2s}
-.channel:hover{border-color:var(--accent);transform:translateY(-2px)}
+.channel:hover{border-color:var(--accent)}
 .channel .ci{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;flex:none;
   background:rgba(63,224,160,.1)}
 .channel .ci svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
@@ -415,8 +400,20 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
    справа год и ссылка. Разделители вместо рамок — так список читается
    сверху вниз, а не рассыпается на одинаковые плитки. */
 .projects{margin-top:34px;border-top:1px solid var(--line)}
-.prj{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 28px;align-items:baseline;
+.prj{display:grid;grid-template-columns:200px minmax(0,1fr) auto;gap:20px 28px;align-items:start;
   padding:22px 4px;border-bottom:1px solid var(--line)}
+/* Превью — настоящий первый экран сайта. Низ растворяется, чтобы обрез
+   читался как намеренный край кадра, а не как срезанная строка. */
+.prj-shot{width:200px;aspect-ratio:16/10;border-radius:8px;overflow:hidden;
+  border:1px solid var(--line);background:var(--surface);
+  mask-image:linear-gradient(#000 76%,transparent);
+  -webkit-mask-image:linear-gradient(#000 76%,transparent)}
+.prj-shot img{width:100%;height:100%;object-fit:cover;object-position:top}
+/* у внутренних систем снимка нет — держим колонку пустой, чтобы строки
+   не разъезжались по горизонтали */
+.prj-noshot{width:200px;aspect-ratio:16/10;border-radius:8px;
+  border:1px dashed var(--line);display:grid;place-items:center;
+  color:var(--muted-2);font-size:13px;text-align:center;padding:0 14px}
 .prj .name{font-size:19px;font-weight:600;letter-spacing:-.015em;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .prj .what{margin-top:7px;color:var(--muted);font-size:15px;max-width:62ch}
 .prj .built{margin-top:9px;color:var(--muted-2);font-size:13.5px}
@@ -430,9 +427,22 @@ a.prj .open{color:var(--accent);font-size:14px;font-weight:500;display:inline-fl
 a.prj .open svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;
   transition:transform .18s ease}
 a.prj:hover .open svg{transform:translate(2px,-2px)}
-@media (max-width:760px){
+@media (max-width:900px){
+  .prj{grid-template-columns:150px minmax(0,1fr);gap:16px 20px}
+  .prj .meta{grid-column:2;margin-top:2px}
+  .prj-shot,.prj-noshot{width:150px}
+}
+@media (max-width:620px){
   .prj{grid-template-columns:1fr;gap:12px;padding:20px 4px}
-  .prj .meta{white-space:normal}
+  .prj .meta{grid-column:1;white-space:normal}
+  .prj-shot{width:100%;max-width:320px}
+  /* пустая рамка на узком экране только съедала бы экран: строка и так
+     подписана словами «внутренняя система» */
+  .prj-noshot{display:none}
+}
+/* на узкой шапке логотип ужимается до «~ aigiz», иначе кнопка наезжает */
+@media (max-width:560px){
+  .logo .dim{display:none}
 }
 
 /* ---------- reveal animation ----------
@@ -493,15 +503,13 @@ a.prj:hover .open svg{transform:translate(2px,-2px)}
 <body>
 
 <a href="#services" class="skip-link">Перейти к содержимому</a>
-<div class="ambient"></div>
-<div class="grid-bg"></div>
 <div class="grain"></div>
 
 <!-- ================= NAV ================= -->
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a href="#" class="logo">
-      <span class="mark">A</span> Aigiz Project
+      <span class="mark" aria-hidden="true">~</span><span class="word">aigiz<span class="dim"> project</span></span>
     </a>
     <nav class="nav-links" id="navLinks">
       <a href="#services">Услуги</a>
@@ -712,8 +720,8 @@ a.prj:hover .open svg{transform:translate(2px,-2px)}
       <p>Не передаю задачу на конвейер — <b>веду проект сам</b>, от разбора процесса до запуска. Вы получаете рабочую систему и понятный результат, а не набор настроек, в которых потом не разобраться.</p>
       <p>После сдачи <b>месяц на связи</b>: правлю, дорабатываю и помогаю, пока всё не заработает как надо.</p>
       <div class="about-sign">
-        <div class="case-av">A</div>
-        <div><div class="nm">Aigiz Project</div><div class="rl">Автоматизация бизнес-процессов</div></div>
+        <div class="sign-mark" aria-hidden="true">~</div>
+        <div><div class="nm">aigiz project</div><div class="rl">Автоматизация бизнес-процессов</div></div>
       </div>
       <div class="about-actions">
         <a href="#contact" class="btn btn-primary">Обсудить задачу</a>
@@ -733,8 +741,7 @@ a.prj:hover .open svg{transform:translate(2px,-2px)}
     <div class="cases">
       <div class="case reveal">
         <div class="case-top">
-          <div class="case-av">А</div>
-          <div><div class="who">Алина</div><div class="role">Нутрициолог</div></div>
+          <span class="who">Алина</span><span class="role">нутрициолог</span>
         </div>
         <p class="body">Внедрил CRM, где все диалоги и заявки из магазина видны как на ладони. До этого сообщение от <b>оплатившего клиента провисело без ответа больше 1,5 месяцев</b>.</p>
         <div class="stat">
@@ -745,8 +752,7 @@ a.prj:hover .open svg{transform:translate(2px,-2px)}
       </div>
       <div class="case reveal">
         <div class="case-top">
-          <div class="case-av">Д</div>
-          <div><div class="who">Дмитрий</div><div class="role">Мотоподбор</div></div>
+          <span class="who">Дмитрий</span><span class="role">мотоподбор</span>
         </div>
         <p class="body">Сделал лендинг под услугу мотоподбора — понятная страница, которая ведёт посетителя к заявке. <b>Клиенту понравился результат</b>, заявки приходят прямо с сайта.</p>
         <div class="stat">
@@ -771,6 +777,7 @@ a.prj:hover .open svg{transform:translate(2px,-2px)}
     <div class="projects">
 
       <a class="prj reveal" href="https://alinaecosin.ru" target="_blank" rel="noopener">
+        <div class="prj-shot"><img src="prj/ecosin.jpg" width="640" height="400" loading="lazy" decoding="async" alt="Первый экран сайта нутрициолога Ecosin"></div>
         <div>
           <div class="name">Сайт нутрициолога Ecosin</div>
           <div class="what">Восемь страниц: консультации, чек-апы, разбор анализов, гайды, раздел для коллег. Форма записи, подключён Яндекс.Вебмастер.</div>
@@ -783,6 +790,7 @@ a.prj:hover .open svg{transform:translate(2px,-2px)}
       </a>
 
       <div class="prj reveal">
+        <div class="prj-noshot">закрытая часть</div>
         <div>
           <div class="name">Диспетчерская</div>
           <div class="what">Рабочее место владельца: все диалоги из Telegram в одном окне, заказы, товары, цепочки сообщений, уведомления на телефон. Внутри же магазин и конструктор смузи, через которые клиент оформляет заказ.</div>
@@ -795,6 +803,7 @@ a.prj:hover .open svg{transform:translate(2px,-2px)}
       </div>
 
       <div class="prj reveal">
+        <div class="prj-noshot">закрытая часть</div>
         <div>
           <div class="name">Парсер Telegram</div>
           <div class="what">Следит за чатами по ключевым словам и отправляет подходящие сообщения дальше — в бота или CRM. Вход по QR-коду, без ввода кода из SMS. Лог отбора виден в реальном времени.</div>
@@ -806,7 +815,8 @@ a.prj:hover .open svg{transform:translate(2px,-2px)}
         </div>
       </div>
 
-      <a class="prj reveal" href="https://a6340374-stack.github.io/evacuation/" target="_blank" rel="noopener">
+      <div class="prj reveal">
+        <div class="prj-noshot">телефон не вставлен</div>
         <div>
           <div class="name">Эвакуатор в Уфе</div>
           <div class="what">Страница под срочный вызов: телефон в первом экране, цены, работа круглосуточно. Собрана под запросы, с которыми эвакуатор ищут ночью.</div>
@@ -814,11 +824,12 @@ a.prj:hover .open svg{transform:translate(2px,-2px)}
         </div>
         <div class="meta">
           <span class="year">2026</span>
-          <span class="open">Открыть <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <span class="closed">Дорабатывается</span>
         </div>
-      </a>
+      </div>
 
       <a class="prj reveal" href="https://a6340374-stack.github.io/ferma-inzer/" target="_blank" rel="noopener">
+        <div class="prj-shot"><img src="prj/ferma.jpg" width="640" height="400" loading="lazy" decoding="async" alt="Первый экран сайта мини-фермы в Инзере"></div>
         <div>
           <div class="name">Мини-ферма в Инзере</div>
           <div class="what">Страусы, павлины и пони в Белорецком районе. Сайт для семейной поездки выходного дня: чем заняться, как добраться, сколько стоит.</div>
@@ -831,6 +842,7 @@ a.prj:hover .open svg{transform:translate(2px,-2px)}
       </a>
 
       <a class="prj reveal" href="https://a6340374-stack.github.io/moto.podbor222/" target="_blank" rel="noopener">
+        <div class="prj-shot"><img src="prj/moto.jpg" width="640" height="400" loading="lazy" decoding="async" alt="Отчёт эксперта по мотоциклу, вид с телефона"></div>
         <div>
           <div class="name">Мотоподбор: отчёт эксперта</div>
           <div class="what">Продолжение лендинга Дмитрия. Готовый отчёт о проверке мотоцикла, который клиент открывает по ссылке вместо файла в мессенджере.</div>
@@ -843,6 +855,7 @@ a.prj:hover .open svg{transform:translate(2px,-2px)}
       </a>
 
       <a class="prj reveal" href="https://a6340374-stack.github.io/alina.guede/" target="_blank" rel="noopener">
+        <div class="prj-shot"><img src="prj/guide.jpg" width="640" height="400" loading="lazy" decoding="async" alt="Первый экран гайда об интервальном голодании"></div>
         <div>
           <div class="name">Гайд «Интервальное голодание»</div>
           <div class="what">Лид-магнит нутрициолога в виде веб-страницы, а не PDF: открывается с телефона, читается без скачивания, ссылку можно переслать.</div>
@@ -855,6 +868,7 @@ a.prj:hover .open svg{transform:translate(2px,-2px)}
       </a>
 
       <div class="prj reveal">
+        <div class="prj-noshot">закрытая часть</div>
         <div>
           <div class="name">Автоматизации на n8n</div>
           <div class="what">Сценарии, которые работают без участия человека: обратный звонок в такси, сбор контактов заведений с карт, постинг во «ВКонтакте» по расписанию.</div>
