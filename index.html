@@ -10,7 +10,7 @@
 <meta name="keywords" content="автоматизация бизнеса, телеграм бот на заказ, разработка телеграм ботов, воронки продаж, n8n, CRM для малого бизнеса, чат-бот с оплатой, AI-контент, разработка лендинга" />
 <meta name="author" content="Aigiz Project" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<meta name="theme-color" content="#0a0b0d" />
+<meta name="theme-color" content="#070809" />
 <meta name="yandex-verification" content="1cae15dc800cdc0f" />
 <meta name="google-site-verification" content="E1fZKzG_m5S4QgWmy3Y0m4b4ZMMbpBPc52yGEZVIMAs" />
 <link rel="canonical" href="https://aigizproject.ru/" />
@@ -35,9 +35,11 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233fe0a0'/%3E%3Ctext x='16' y='23' font-family='Arial,sans-serif' font-size='20' font-weight='bold' text-anchor='middle' fill='%2304130c'%3EA%3C/text%3E%3C/svg%3E" />
 <link rel="apple-touch-icon" href="aigiz.jpg" />
 
+<script>document.documentElement.className+=' js';</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <!-- ===== Structured data (Schema.org) ===== -->
 <script type="application/ld+json">
@@ -81,10 +83,10 @@
    ============================================================ */
 
 :root{
-  --bg:        #0a0b0d;
-  --bg-2:      #101216;
-  --surface:   #14171c;
-  --surface-2: #181c22;
+  --bg:        #070809;
+  --bg-2:      #0c0e11;
+  --surface:   #0f1216;
+  --surface-2: #13161b;
   --line:      rgba(255,255,255,.08);
   --line-2:    rgba(255,255,255,.14);
   --text:      #f4f6f8;
@@ -94,6 +96,10 @@
   --accent-dim:#2bb37e;
   --accent-ink:#04130c;
   --glow:      rgba(63,224,160,.18);
+  /* тонированные под фон тени вместо чистого чёрного */
+  --shadow-1:  0 10px 30px -12px rgba(2,10,7,.7);
+  --shadow-2:  0 18px 50px -18px rgba(2,12,8,.8);
+  --ring:      0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
   --maxw:      1180px;
   --r-card:    16px;
   --r-input:   12px;
@@ -104,7 +110,7 @@ html{scroll-behavior:smooth}
 body{
   background:var(--bg);
   color:var(--text);
-  font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   line-height:1.55;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
@@ -113,8 +119,22 @@ a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 ::selection{background:var(--accent);color:var(--accent-ink)}
 
+/* видимый focus только для клавиатуры — доступность */
+:focus-visible{outline:none;box-shadow:var(--ring);border-radius:6px}
+a:focus-visible,.btn:focus-visible,.channel:focus-visible{box-shadow:var(--ring)}
+
+/* skip-to-content для клавиатурной навигации */
+.skip-link{position:absolute;left:16px;top:-60px;z-index:100;
+  background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:14px;
+  padding:10px 16px;border-radius:10px;transition:top .2s ease}
+.skip-link:focus{top:16px}
+
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 section{position:relative}
+
+/* тонкое зерно поверх фона — убирает «цифровую» плоскость */
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* ---------- ambient background ---------- */
 .ambient{position:fixed;inset:0;z-index:-1;pointer-events:none}
@@ -165,17 +185,20 @@ section{position:relative}
 /* ---------- nav ---------- */
 header.nav{position:sticky;top:0;z-index:50;
   backdrop-filter:saturate(140%) blur(14px);
-  background:rgba(10,11,13,.72);
+  background:rgba(7,8,9,.74);
   border-bottom:1px solid transparent;transition:border-color .3s ease}
 header.nav.scrolled{border-bottom-color:var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.02em}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:18px;letter-spacing:-.02em}
 .logo .mark{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
   background:linear-gradient(140deg,var(--accent),var(--accent-dim));color:var(--accent-ink);
   font-weight:800;font-size:16px;box-shadow:0 4px 18px -6px var(--glow)}
 .nav-links{display:flex;align-items:center;gap:30px}
-.nav-links a{color:var(--muted);font-size:15px;font-weight:500;transition:color .18s}
+.nav-links a{color:var(--muted);font-size:15px;font-weight:500;transition:color .18s;position:relative}
 .nav-links a:hover{color:var(--text)}
+.nav-links a.active{color:var(--text)}
+.nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;
+  border-radius:2px;background:var(--accent);box-shadow:0 0 8px var(--glow)}
 .nav-cta{display:flex;align-items:center;gap:14px}
 .nav-toggle{display:none;background:none;border:none;color:var(--text);cursor:pointer}
 
@@ -189,13 +212,13 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);
   box-shadow:0 0 0 0 var(--accent);animation:pulse 2.4s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(63,224,160,.55)}70%{box-shadow:0 0 0 9px rgba(63,224,160,0)}100%{box-shadow:0 0 0 0 rgba(63,224,160,0)}}
-.hero h1{font-size:clamp(40px,6vw,66px);line-height:1.02;letter-spacing:-.03em;font-weight:800}
+.hero h1{font-size:clamp(40px,6vw,66px);line-height:1.02;letter-spacing:-.03em;font-weight:600;text-wrap:balance}
 .hero h1 .accent{color:var(--accent)}
 .hero p.sub{margin-top:24px;font-size:clamp(16px,2vw,19px);color:var(--muted);max-width:32ch}
 /* terminal-typing subtitle (command + output) */
 .hero p.sub.term{
   margin-top:22px;max-width:48ch;
-  font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
+  font-family:'Geist Mono',ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
   font-size:clamp(13.5px,1.6vw,15.5px);line-height:1.7;
 }
 .sub.term .term-cmd,.sub.term .term-out{display:block}
@@ -214,7 +237,7 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .hero-actions{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}
 .hero-meta{display:flex;gap:28px;margin-top:42px;flex-wrap:wrap}
 .hero-meta .item{display:flex;flex-direction:column;gap:2px}
-.hero-meta .num{font-size:26px;font-weight:800;letter-spacing:-.02em}
+.hero-meta .num{font-size:26px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .hero-meta .lbl{font-size:13px;color:var(--muted-2)}
 
 /* ---------- hero visual: automation flow ---------- */
@@ -228,7 +251,7 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .pulse-line{stroke:var(--accent);stroke-width:2;fill:none;stroke-dasharray:6 220;filter:drop-shadow(0 0 4px var(--glow))}
 .flow-tag{position:absolute;background:var(--surface);border:1px solid var(--line);
   border-radius:10px;padding:8px 12px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px;
-  box-shadow:0 10px 30px -12px #000}
+  box-shadow:var(--shadow-1)}
 .flow-tag .d{width:7px;height:7px;border-radius:50%;background:var(--accent)}
 .flow-tag.t1{top:6%;left:-6%;animation:float 6s ease-in-out infinite}
 .flow-tag.t2{bottom:14%;right:-8%;animation:float 7s ease-in-out infinite .6s}
@@ -240,8 +263,8 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .sec-head{max-width:640px;margin-bottom:52px}
 .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
 .kicker{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
-.sec h2{font-size:clamp(30px,4.4vw,46px);line-height:1.05;letter-spacing:-.025em;font-weight:800}
-.sec-head p{margin-top:18px;font-size:17px;color:var(--muted)}
+.sec h2{font-size:clamp(30px,4.4vw,46px);line-height:1.05;letter-spacing:-.025em;font-weight:600;text-wrap:balance}
+.sec-head p{margin-top:18px;font-size:17px;color:var(--muted);text-wrap:pretty}
 
 /* ---------- pains ---------- */
 .pains{background:linear-gradient(180deg,transparent, rgba(255,255,255,.012))}
@@ -263,7 +286,7 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .card .ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:20px;
   background:rgba(63,224,160,.1);border:1px solid rgba(63,224,160,.22)}
 .card .ico svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.card h3{font-size:20px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+.card h3{font-size:20px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px}
 .card p{font-size:15px;color:var(--muted)}
 .card ul{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
 .card ul li{font-size:13px;color:var(--muted);background:var(--surface-2);border:1px solid var(--line);
@@ -285,7 +308,7 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .step .n{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:18px;
   display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;
   border-radius:50%;border:1px solid rgba(63,224,160,.3);background:rgba(63,224,160,.07)}
-.step h3{font-size:19px;font-weight:700;margin-bottom:8px}
+.step h3{font-size:19px;font-weight:600;margin-bottom:8px}
 .step p{font-size:15px;color:var(--muted)}
 
 /* ---------- cases ---------- */
@@ -299,7 +322,7 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .case-top .who{font-weight:700;font-size:17px}
 .case-top .role{font-size:14px;color:var(--muted)}
 .case .stat{display:flex;align-items:baseline;gap:12px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.case .stat .big{font-size:38px;font-weight:800;letter-spacing:-.03em;color:var(--accent);line-height:1}
+.case .stat .big{font-size:38px;font-weight:800;letter-spacing:-.03em;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
 .case .stat .desc{font-size:14px;color:var(--muted)}
 .case .body{font-size:15px;color:var(--muted)}
 .case .body b{color:var(--text);font-weight:600}
@@ -325,11 +348,11 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .about-photo::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(160deg, transparent 55%, rgba(63,224,160,.14));mix-blend-mode:screen}
 .about-photo .badge{position:absolute;left:16px;bottom:16px;display:flex;align-items:center;gap:8px;
-  background:rgba(10,11,13,.7);backdrop-filter:blur(8px);border:1px solid var(--line-2);
+  background:rgba(7,8,9,.72);backdrop-filter:blur(8px);border:1px solid var(--line-2);
   border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600}
 .about-photo .badge .d{width:7px;height:7px;border-radius:50%;background:var(--accent);
   box-shadow:0 0 0 0 var(--accent);animation:pulse 2.4s infinite}
-.about-text h2{font-size:clamp(28px,4vw,42px);line-height:1.08;letter-spacing:-.025em;font-weight:800}
+.about-text h2{font-size:clamp(28px,4vw,42px);line-height:1.08;letter-spacing:-.025em;font-weight:600}
 .about-text .lead{margin-top:20px;font-size:18px;color:var(--text)}
 .about-text p{margin-top:16px;font-size:16px;color:var(--muted);max-width:54ch}
 .about-text p b{color:var(--text);font-weight:600}
@@ -341,7 +364,7 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 /* ---------- contact / form ---------- */
 .contact{padding:96px 0 40px}
 .contact-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:start}
-.contact-left h2{font-size:clamp(30px,4.4vw,46px);line-height:1.04;letter-spacing:-.025em;font-weight:800}
+.contact-left h2{font-size:clamp(30px,4.4vw,46px);line-height:1.04;letter-spacing:-.025em;font-weight:600}
 .contact-left p{margin-top:18px;color:var(--muted);font-size:17px;max-width:42ch}
 .contact-channels{margin-top:34px;display:flex;flex-direction:column;gap:14px}
 .channel{display:flex;align-items:center;gap:15px;padding:16px 18px;border:1px solid var(--line);
@@ -387,9 +410,37 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
 .foot-links a{color:var(--muted);font-size:14px;transition:color .18s}
 .foot-links a:hover{color:var(--accent)}
 
-/* ---------- reveal animation ---------- */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1)}
-.reveal.in{opacity:1;transform:none}
+/* ---------- projects ----------
+   Не сетка карточек, а реестр работ: строка = проект. Слева имя и суть,
+   справа год и ссылка. Разделители вместо рамок — так список читается
+   сверху вниз, а не рассыпается на одинаковые плитки. */
+.projects{margin-top:34px;border-top:1px solid var(--line)}
+.prj{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 28px;align-items:baseline;
+  padding:22px 4px;border-bottom:1px solid var(--line)}
+.prj .name{font-size:19px;font-weight:600;letter-spacing:-.015em;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.prj .what{margin-top:7px;color:var(--muted);font-size:15px;max-width:62ch}
+.prj .built{margin-top:9px;color:var(--muted-2);font-size:13.5px}
+.prj .meta{display:flex;align-items:baseline;gap:18px;white-space:nowrap}
+.prj .year{color:var(--muted-2);font-size:14px;font-variant-numeric:tabular-nums}
+/* внутренние системы ссылки не имеют — вместо неё честная пометка */
+.prj .closed{color:var(--muted-2);font-size:14px}
+a.prj{color:inherit}
+a.prj:hover .name{color:var(--accent)}
+a.prj .open{color:var(--accent);font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:6px}
+a.prj .open svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;
+  transition:transform .18s ease}
+a.prj:hover .open svg{transform:translate(2px,-2px)}
+@media (max-width:760px){
+  .prj{grid-template-columns:1fr;gap:12px;padding:20px 4px}
+  .prj .meta{white-space:normal}
+}
+
+/* ---------- reveal animation ----------
+   Прячем контент ТОЛЬКО когда скрипт жив и точно его покажет: класс js
+   ставится инлайном в <head>. Без JS, при ошибке в нём или в режиме без
+   анимаций страница просто видна целиком — пустых секций не бывает. */
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1)}
+.js .reveal.in{opacity:1;transform:none}
 
 /* ---------- responsive ---------- */
 @media (max-width:980px){
@@ -419,7 +470,7 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  .reveal{opacity:1;transform:none}
+  .js .reveal{opacity:1;transform:none}
   /* терминальный курсор оставляем живым — это часть смысла, а не декор */
   .sub.term .caret{animation:caret-blink 1.05s steps(1,end) infinite!important}
 }
@@ -441,8 +492,10 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
 </head>
 <body>
 
+<a href="#services" class="skip-link">Перейти к содержимому</a>
 <div class="ambient"></div>
 <div class="grid-bg"></div>
+<div class="grain"></div>
 
 <!-- ================= NAV ================= -->
 <header class="nav" id="nav">
@@ -455,6 +508,7 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
       <a href="#how">Как работаем</a>
       <a href="#about">Обо мне</a>
       <a href="#cases">Кейсы</a>
+      <a href="#projects">Проекты</a>
       <a href="#contact">Контакты</a>
     </nav>
     <div class="nav-cta">
@@ -550,9 +604,9 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
 <section class="sec pains" id="pains">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="kicker">Знакомо?</div>
-      <h2>Бизнес работает, а вы — вручную</h2>
-      <p>Пока всё держится на ручном труде, время уходит не на рост, а на однотипные действия. Вот где обычно теряются деньги.</p>
+      <div class="kicker">Где теряется время</div>
+      <h2>Рутина ворует ваши деньги</h2>
+      <p>Пока всё держится на ручном труде, время уходит не на рост, а на однотипные действия. Вот где чаще всего утекает прибыль.</p>
     </div>
     <div class="pain-grid">
       <div class="pain reveal">
@@ -579,7 +633,6 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
 <section class="sec" id="services">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="kicker">Что я делаю</div>
       <h2>Системы, которые работают вместо рутины</h2>
       <p>Собираю под задачу: от Telegram-бота с приёмом оплат до полной автоматизации процессов и AI-контента.</p>
     </div>
@@ -624,7 +677,6 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
 <section class="sec" id="how">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="kicker">Как это работает</div>
       <h2>Собирается один раз — работает само</h2>
     </div>
     <div class="steps reveal">
@@ -655,7 +707,6 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
       <span class="badge"><span class="d"></span> На связи</span>
     </div>
     <div class="about-text reveal">
-      <div class="kicker">Кто за проектом</div>
       <h2>Привет, я Айгиз</h2>
       <p class="lead">Собираю автоматизацию для малого бизнеса: ботов, воронки, CRM и сайты, которые работают вместо рутины.</p>
       <p>Не передаю задачу на конвейер — <b>веду проект сам</b>, от разбора процесса до запуска. Вы получаете рабочую систему и понятный результат, а не набор настроек, в которых потом не разобраться.</p>
@@ -704,6 +755,117 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
         </div>
         <div class="tag"><span class="d"></span> Лендинг · форма заявок · приём обращений</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section class="sec" id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Проекты</div>
+      <h2>Что я уже собрал</h2>
+      <p>Часть сделана для клиентов, часть — для себя, чтобы разобраться в инструменте. Сайты можно открыть и потыкать, внутренние системы показываю на созвоне.</p>
+    </div>
+
+    <div class="projects">
+
+      <a class="prj reveal" href="https://alinaecosin.ru" target="_blank" rel="noopener">
+        <div>
+          <div class="name">Сайт нутрициолога Ecosin</div>
+          <div class="what">Восемь страниц: консультации, чек-апы, разбор анализов, гайды, раздел для коллег. Форма записи, подключён Яндекс.Вебмастер.</div>
+          <div class="built">Статика на своём домене, вёрстка без конструктора</div>
+        </div>
+        <div class="meta">
+          <span class="year">2026</span>
+          <span class="open">Открыть <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </div>
+      </a>
+
+      <div class="prj reveal">
+        <div>
+          <div class="name">Диспетчерская</div>
+          <div class="what">Рабочее место владельца: все диалоги из Telegram в одном окне, заказы, товары, цепочки сообщений, уведомления на телефон. Внутри же магазин и конструктор смузи, через которые клиент оформляет заказ.</div>
+          <div class="built">Python, FastAPI, PostgreSQL, Telegram-боты, PWA с push</div>
+        </div>
+        <div class="meta">
+          <span class="year">2026</span>
+          <span class="closed">Внутренняя система</span>
+        </div>
+      </div>
+
+      <div class="prj reveal">
+        <div>
+          <div class="name">Парсер Telegram</div>
+          <div class="what">Следит за чатами по ключевым словам и отправляет подходящие сообщения дальше — в бота или CRM. Вход по QR-коду, без ввода кода из SMS. Лог отбора виден в реальном времени.</div>
+          <div class="built">Telethon, FastAPI, React, Docker</div>
+        </div>
+        <div class="meta">
+          <span class="year">2026</span>
+          <span class="closed">Свой инструмент</span>
+        </div>
+      </div>
+
+      <a class="prj reveal" href="https://a6340374-stack.github.io/evacuation/" target="_blank" rel="noopener">
+        <div>
+          <div class="name">Эвакуатор в Уфе</div>
+          <div class="what">Страница под срочный вызов: телефон в первом экране, цены, работа круглосуточно. Собрана под запросы, с которыми эвакуатор ищут ночью.</div>
+          <div class="built">Лендинг под поисковый спрос</div>
+        </div>
+        <div class="meta">
+          <span class="year">2026</span>
+          <span class="open">Открыть <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </div>
+      </a>
+
+      <a class="prj reveal" href="https://a6340374-stack.github.io/ferma-inzer/" target="_blank" rel="noopener">
+        <div>
+          <div class="name">Мини-ферма в Инзере</div>
+          <div class="what">Страусы, павлины и пони в Белорецком районе. Сайт для семейной поездки выходного дня: чем заняться, как добраться, сколько стоит.</div>
+          <div class="built">Лендинг, фотоматериалы заказчика</div>
+        </div>
+        <div class="meta">
+          <span class="year">2026</span>
+          <span class="open">Открыть <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </div>
+      </a>
+
+      <a class="prj reveal" href="https://a6340374-stack.github.io/moto.podbor222/" target="_blank" rel="noopener">
+        <div>
+          <div class="name">Мотоподбор: отчёт эксперта</div>
+          <div class="what">Продолжение лендинга Дмитрия. Готовый отчёт о проверке мотоцикла, который клиент открывает по ссылке вместо файла в мессенджере.</div>
+          <div class="built">Страница-документ с фото и выводами</div>
+        </div>
+        <div class="meta">
+          <span class="year">2026</span>
+          <span class="open">Открыть <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </div>
+      </a>
+
+      <a class="prj reveal" href="https://a6340374-stack.github.io/alina.guede/" target="_blank" rel="noopener">
+        <div>
+          <div class="name">Гайд «Интервальное голодание»</div>
+          <div class="what">Лид-магнит нутрициолога в виде веб-страницы, а не PDF: открывается с телефона, читается без скачивания, ссылку можно переслать.</div>
+          <div class="built">Длинная страница с навигацией по разделам</div>
+        </div>
+        <div class="meta">
+          <span class="year">2026</span>
+          <span class="open">Открыть <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </div>
+      </a>
+
+      <div class="prj reveal">
+        <div>
+          <div class="name">Автоматизации на n8n</div>
+          <div class="what">Сценарии, которые работают без участия человека: обратный звонок в такси, сбор контактов заведений с карт, постинг во «ВКонтакте» по расписанию.</div>
+          <div class="built">n8n, вебхуки, Google Sheets, API мессенджеров</div>
+        </div>
+        <div class="meta">
+          <span class="year">2026</span>
+          <span class="closed">Сценарии под задачу</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -806,6 +968,23 @@ const navToggle = document.getElementById('navToggle');
 addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 8), {passive:true});
 navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
 navLinks.addEventListener('click', e => { if(e.target.tagName==='A') navLinks.classList.remove('open'); });
+
+/* ---- scroll-spy: подсветка активного пункта навигации ---- */
+(function(){
+  const links = [...navLinks.querySelectorAll('a[href^="#"]')];
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const sections = [...map.keys()].map(id => document.getElementById(id)).filter(Boolean);
+  if(!sections.length) return;
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if(en.isIntersecting){
+        links.forEach(a => a.classList.remove('active'));
+        map.get(en.target.id)?.classList.add('active');
+      }
+    });
+  }, {rootMargin:'-45% 0px -50% 0px', threshold:0});
+  sections.forEach(s => spy.observe(s));
+})();
 
 /* ---- reveal on scroll ---- */
 const io = new IntersectionObserver((entries) => {
