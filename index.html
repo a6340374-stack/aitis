@@ -259,7 +259,7 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
 .card{border:1px solid var(--line);border-radius:var(--r-card);background:var(--surface);
   padding:30px;position:relative;overflow:hidden;transition:border-color .25s, transform .25s}
-.card:hover{border-color:var(--accent)}
+.card.in-view{border-color:var(--accent)}
 .card .ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:20px;
   background:rgba(63,224,160,.1);border:1px solid rgba(63,224,160,.22)}
 .card .ico svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
@@ -275,7 +275,11 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .card .glowline{position:absolute;inset:0;border-radius:inherit;pointer-events:none;
   background:radial-gradient(400px 80px at var(--mx,50%) 0%, rgba(63,224,160,.10), transparent 70%);
   opacity:0;transition:opacity .3s}
-.card:hover .glowline{opacity:1}
+.card.in-view .glowline{opacity:1}
+@media (hover:hover){
+  .card:hover{border-color:var(--accent)}
+  .card:hover .glowline{opacity:1}
+}
 
 /* ---------- how / value ---------- */
 .steps{list-style:none;counter-reset:stage;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
@@ -841,8 +845,14 @@ const io = new IntersectionObserver((entries) => {
 }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach((el,i) => { el.style.transitionDelay = (i%3)*0.06+'s'; io.observe(el); });
 
-/* ---- card hover glow follows cursor ---- */
+/* Highlight the row crossing the viewport midpoint. */
+const glowObserver = new IntersectionObserver(entries => {
+  for (const entry of entries) {
+    entry.target.classList.toggle('in-view', entry.isIntersecting);
+  }
+}, {rootMargin:'-48% 0px -48% 0px'});
 document.querySelectorAll('[data-glow]').forEach(card => {
+  glowObserver.observe(card);
   card.addEventListener('pointermove', e => {
     const r = card.getBoundingClientRect();
     card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
