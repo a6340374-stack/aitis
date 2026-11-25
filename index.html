@@ -160,8 +160,8 @@ section{position:relative}
 header.nav{position:sticky;top:0;z-index:50;
   backdrop-filter:saturate(140%) blur(14px);
   background:rgba(7,8,9,.74);
-  border-bottom:1px solid transparent;transition:border-color .3s ease,transform .2s ease}
-header.nav.nav-hidden:not(:has(:focus-visible)){transform:translateY(-100%)}
+  border-bottom:1px solid transparent;transition:border-color .3s ease;transform:translateY(var(--nav-offset,0px))}
+header.nav:has(:focus-visible),header.nav:has(.nav-links.open){transform:none}
 header.nav.scrolled{border-bottom-color:var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
 /* Логотип — не плитка с буквой, а приглашение командной строки:
@@ -801,17 +801,15 @@ const nav = document.getElementById('nav');
 const navLinks = document.getElementById('navLinks');
 const navToggle = document.getElementById('navToggle');
 let lastNavY = Math.max(0, scrollY);
+let hiddenHeight = 0;
 addEventListener('scroll', () => {
   const y = Math.max(0, Math.min(scrollY, document.documentElement.scrollHeight - innerHeight));
-  nav.classList.toggle('scrolled', y > 8);
-  if (y <= nav.offsetHeight || navLinks.classList.contains('open')) {
-    nav.classList.remove('nav-hidden');
-  } else if (Math.abs(y - lastNavY) >= 6) {
-    nav.classList.toggle('nav-hidden', y > lastNavY);
-  } else {
-    return;
-  }
+  const delta = y - lastNavY;
   lastNavY = y;
+  hiddenHeight = navLinks.classList.contains('open') || y === 0
+    ? 0 : Math.max(0, Math.min(nav.offsetHeight, hiddenHeight + delta));
+  nav.style.setProperty('--nav-offset', -hiddenHeight + 'px');
+  nav.classList.toggle('scrolled', y > 8);
 }, {passive:true});
 navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
 navLinks.addEventListener('click', e => { if(e.target.tagName==='A') navLinks.classList.remove('open'); });
