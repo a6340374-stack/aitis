@@ -160,7 +160,8 @@ section{position:relative}
 header.nav{position:sticky;top:0;z-index:50;
   backdrop-filter:saturate(140%) blur(14px);
   background:rgba(7,8,9,.74);
-  border-bottom:1px solid transparent;transition:border-color .3s ease}
+  border-bottom:1px solid transparent;transition:border-color .3s ease,transform .2s ease}
+header.nav.nav-hidden:not(:has(:focus-visible)){transform:translateY(-100%)}
 header.nav.scrolled{border-bottom-color:var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
 /* Логотип — не плитка с буквой, а приглашение командной строки:
@@ -191,7 +192,7 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .hero::before{
   content:"";
   position:fixed;
-  inset:69px 0 0;
+  inset:0;
   z-index:-1;
   pointer-events:none;
   background:linear-gradient(90deg,rgba(7,14,18,.96) 0%,rgba(7,14,18,.87) 35%,rgba(7,14,18,.32) 62%,transparent 80%),
@@ -277,29 +278,18 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .card:hover .glowline{opacity:1}
 
 /* ---------- how / value ---------- */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);
-  border-radius:var(--r-card);overflow:hidden;background:var(--surface)}
-.step{padding:36px 30px;border-right:1px solid var(--line);position:relative}
-.step:last-child{border-right:none}
-.step .n{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:18px;
-  display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;
-  border-radius:50%;border:1px solid rgba(63,224,160,.3);background:rgba(63,224,160,.07)}
-.step h3{font-size:19px;font-weight:600;margin-bottom:8px}
-.step p{font-size:15px;color:var(--muted)}
+.steps{list-style:none;counter-reset:stage;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.step{counter-increment:stage;display:grid;grid-template-columns:auto 1fr;align-content:start;gap:8px 16px;
+  padding:clamp(20px,3vw,32px);border:1px solid var(--line-2);border-radius:12px;background:var(--surface)}
+.step::before{content:counter(stage,decimal-leading-zero);grid-row:span 2;color:var(--accent);
+  font:14px/1.9 'Geist Mono',monospace}
+.step h3{font-size:20px;line-height:1.35;font-weight:600}
+.step p{grid-column:2;font-size:15px;color:var(--muted)}
 
 .sign-mark{width:42px;height:42px;border-radius:7px;display:grid;place-items:center;flex:none;
   border:1px solid var(--accent);color:var(--accent);
   font-family:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   font-size:20px;line-height:1;padding-bottom:5px}
-/* ---------- guarantee band ---------- */
-.band{border:1px solid var(--line);border-radius:var(--r-card);
-  background:radial-gradient(120% 160% at 0% 0%, rgba(63,224,160,.07), transparent 55%), var(--surface);
-  padding:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
-.band .b h3{font-size:15px;color:var(--muted);font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:9px}
-.band .b h3 svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:1.8}
-.band .b p{font-size:22px;font-weight:700;letter-spacing:-.01em}
-.band .b p span{color:var(--muted);font-weight:500;font-size:15px}
-
 /* ---------- about (personal brand) ---------- */
 .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:54px;align-items:center}
 .about-photo{position:relative;border-radius:var(--r-card);overflow:hidden;
@@ -323,9 +313,9 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .about-sign .rl{font-size:14px;color:var(--muted)}
 .about-actions{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
 
-/* ---------- contact / form ---------- */
+/* ---------- contact ---------- */
 .contact{padding:96px 0 40px}
-.contact-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:start}
+.contact-left{max-width:600px}
 .contact-left h2{font-size:clamp(30px,4.4vw,46px);line-height:1.04;letter-spacing:-.025em;font-weight:600}
 .contact-left p{margin-top:18px;color:var(--muted);font-size:17px;max-width:42ch}
 .contact-channels{margin-top:34px;display:flex;flex-direction:column;gap:14px}
@@ -337,32 +327,6 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .channel .ci svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .channel .ct .l{font-size:13px;color:var(--muted-2)}
 .channel .ct .v{font-size:17px;font-weight:700}
-
-.form-card{border:1px solid var(--line);border-radius:var(--r-card);background:var(--surface);padding:34px}
-.field{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
-.field label{font-size:14px;font-weight:600}
-.field label .req{color:var(--accent)}
-.field input,.field textarea{
-  background:var(--bg-2);border:1px solid var(--line-2);border-radius:var(--r-input);
-  padding:14px 16px;color:var(--text);font-family:inherit;font-size:15px;width:100%;
-  transition:border-color .18s, box-shadow .18s}
-.field input::placeholder,.field textarea::placeholder{color:var(--muted-2)}
-.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(63,224,160,.15)}
-.field textarea{resize:vertical;min-height:96px}
-.field .help{font-size:13px;color:var(--muted-2)}
-.field .err{font-size:13px;color:#ff6b6b;display:none}
-.field.invalid input,.field.invalid textarea{border-color:#ff6b6b}
-.field.invalid .err{display:block}
-.form-card .btn-primary{width:100%;justify-content:center;font-size:16px;padding:16px}
-.form-note{font-size:13px;color:var(--muted-2);margin-top:14px;text-align:center}
-.form-status{margin-top:16px;padding:14px 16px;border-radius:12px;font-size:15px;display:none;align-items:center;gap:10px}
-.form-status.show{display:flex}
-.form-status.ok{background:rgba(63,224,160,.1);border:1px solid rgba(63,224,160,.3);color:var(--accent)}
-.form-status.bad{background:rgba(255,90,90,.1);border:1px solid rgba(255,90,90,.3);color:#ff7a7a}
-.btn-primary[disabled]{opacity:.6;cursor:wait}
-.spinner{width:17px;height:17px;border:2px solid rgba(4,19,12,.3);border-top-color:var(--accent-ink);
-  border-radius:50%;animation:spin .7s linear infinite;display:none}
-@keyframes spin{to{transform:rotate(360deg)}}
 
 /* ---------- footer ---------- */
 footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
@@ -431,7 +395,6 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
       url("hero-beach.jpg") center top / 100% auto no-repeat var(--bg);
   }
   .hero-grid{grid-template-columns:1fr}
-  .contact-grid{grid-template-columns:1fr;gap:40px}
   .about-grid{grid-template-columns:1fr;gap:32px}
   .about-photo{max-width:380px}
 }
@@ -448,9 +411,6 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
   .bento{grid-template-columns:1fr}
   .card.span-3,.card.span-2,.card.feature{grid-column:auto}
   .steps{grid-template-columns:1fr}
-  .step{border-right:none;border-bottom:1px solid var(--line)}
-  .step:last-child{border-bottom:none}
-  .band{grid-template-columns:1fr;gap:22px;padding:30px}
   .hero-meta{gap:22px}
   .sec{padding:68px 0}
 }
@@ -496,7 +456,7 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
     </nav>
     <div class="nav-cta">
       <a href="https://t.me/Aigiz_Project" target="_blank" rel="noopener" class="btn btn-ghost">Telegram</a>
-      <a href="#contact" class="btn btn-primary">Оставить заявку</a>
+      <a href="#contact" class="btn btn-primary">Связаться</a>
       <button class="nav-toggle" id="navToggle" aria-label="Меню">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
@@ -517,7 +477,7 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
       <div class="hero-actions">
         <a href="#projects" class="btn btn-ghost">Мои проекты</a>
         <a href="#contact" class="btn btn-primary">
-          Оставить заявку
+          Связаться
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
         <a href="https://t.me/Aigiz_Project" target="_blank" rel="noopener" class="btn btn-ghost">
@@ -612,25 +572,35 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
 <section class="sec" id="how">
   <div class="wrap">
     <div class="sec-head reveal">
-      <h2>Собирается один раз — работает само</h2>
+      <h2>Как мы будем работать</h2>
+      <p>Первую версию вы увидите до сборки всего проекта. Вот что мы согласуем на каждом этапе.</p>
     </div>
-    <div class="steps reveal">
-      <div class="step">
-        <div class="n">1</div>
-        <h3>Разбираем задачу</h3>
-        <p>Смотрим, где теряется время и заявки. Определяем, что автоматизировать в первую очередь.</p>
-      </div>
-      <div class="step">
-        <div class="n">2</div>
-        <h3>Собираю систему</h3>
-        <p>Настраиваю бота, воронку, CRM или сайт под ваш процесс. Сайт — от 1 дня, бот с магазином — от 3 дней.</p>
-      </div>
-      <div class="step">
-        <div class="n">3</div>
-        <h3>Работает без вас</h3>
-        <p>Система принимает заявки и оплаты сама. Месяц сопровождаю, правлю и дорабатываю после сдачи.</p>
-      </div>
-    </div>
+    <ol class="steps reveal">
+      <li class="step">
+        <h3>Бриф</h3>
+        <p>Вы рассказываете, как сейчас работает бизнес и что хотите изменить. Вместе определяем объём работ, стоимость и сроки.</p>
+      </li>
+      <li class="step">
+        <h3>Дизайн и превью</h3>
+        <p>Показываю первый экран сайта или сценарий бота. Вы видите, что увидит ваш клиент, и можете предложить изменения до сборки.</p>
+      </li>
+      <li class="step">
+        <h3>Сборка</h3>
+        <p>Собираю страницы или настраиваю бота и CRM. Проверяю на телефоне и компьютере, как клиент проходит путь от первого экрана до заявки.</p>
+      </li>
+      <li class="step">
+        <h3>Правки</h3>
+        <p>Вы открываете рабочую версию и присылаете замечания. Я вношу правки и показываю, что изменилось.</p>
+      </li>
+      <li class="step">
+        <h3>Запуск</h3>
+        <p>Публикую проект и проверяю на реальной заявке, что сообщение приходит куда нужно. Показываю, где смотреть обращения.</p>
+      </li>
+      <li class="step">
+        <h3>После запуска</h3>
+        <p>Первый месяц остаюсь на связи в Telegram. Если что-то работает иначе, чем ожидалось, разбираюсь и вношу правки.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
@@ -790,31 +760,11 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
   </div>
 </section>
 
-<!-- ================= GUARANTEE BAND ================= -->
-<section class="sec" style="padding-top:0">
-  <div class="wrap">
-    <div class="band reveal">
-      <div class="b">
-        <h3><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v6c0 4.5 3.4 7.3 8 8.5 4.6-1.2 8-4 8-8.5V7z"/></svg> Гарантия</h3>
-        <p>1 месяц <span>сопровождения, правок и доработок</span></p>
-      </div>
-      <div class="b">
-        <h3><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Сроки</h3>
-        <p>Сайт — от 1 дня <span>· бот с магазином — от 3 дней</span></p>
-      </div>
-      <div class="b">
-        <h3><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Контроль</h3>
-        <p>Всё под контролем <span>— ничего не теряется</span></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CONTACT / FORM ================= -->
+<!-- ================= CONTACT ================= -->
 <section class="contact" id="contact">
-  <div class="wrap contact-grid">
+  <div class="wrap">
     <div class="contact-left reveal">
-      <h2>Оставьте заявку — отвечу быстро</h2>
+      <h2>Обсудим вашу задачу</h2>
       <p>Расскажите, что нужно автоматизировать. Предложу решение и сориентирую по срокам и цене.</p>
       <div class="contact-channels">
         <a class="channel" href="https://t.me/Aigiz_Project" target="_blank" rel="noopener">
@@ -828,31 +778,6 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
       </div>
     </div>
 
-    <div class="form-card reveal">
-      <form id="leadForm" novalidate>
-        <div class="field" id="f-name">
-          <label for="name">Как вас зовут <span class="req">*</span></label>
-          <input type="text" id="name" name="name" placeholder="Айгиз" autocomplete="name" />
-          <span class="err">Укажите имя</span>
-        </div>
-        <div class="field" id="f-contact">
-          <label for="contact">Контакт для связи <span class="req">*</span></label>
-          <input type="text" id="contact" name="contact" placeholder="Телефон или @username в Telegram" autocomplete="tel" />
-          <span class="help">Куда написать или позвонить</span>
-          <span class="err">Оставьте телефон или Telegram</span>
-        </div>
-        <div class="field" id="f-task">
-          <label for="task">Что нужно автоматизировать?</label>
-          <textarea id="task" name="task" placeholder="Например: бот для приёма заявок и оплат, CRM, лендинг…"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" id="submitBtn">
-          <span class="spinner" id="spinner"></span>
-          <span id="btnText">Отправить заявку</span>
-        </button>
-        <div class="form-status" id="formStatus"></div>
-        <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку контактных данных для ответа на заявку.</p>
-      </form>
-    </div>
   </div>
 </section>
 
@@ -871,21 +796,23 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
 </footer>
 
 <script>
-/* ============================================================
-   CONFIG
-   WEBHOOK_URL — адрес твоего Google Apps Script веб-приложения.
-   Деплой: Apps Script → Deploy → New deployment → Web app →
-   Execute as: Me, Who has access: Anyone → копируешь URL .../exec
-   Пока пусто — форма предложит написать в Telegram.
-   ============================================================ */
-const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbw06Ex3cWOhubZA9m2buH_OR_4G3GhHH3sqP7Rxw9l8TbHT2XnK3Q-74lEDkWyrkXA/exec";
-const TELEGRAM_URL = "https://t.me/Aigiz_Project";
-
 /* ---- nav: scrolled state + mobile menu ---- */
 const nav = document.getElementById('nav');
 const navLinks = document.getElementById('navLinks');
 const navToggle = document.getElementById('navToggle');
-addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 8), {passive:true});
+let lastNavY = Math.max(0, scrollY);
+addEventListener('scroll', () => {
+  const y = Math.max(0, Math.min(scrollY, document.documentElement.scrollHeight - innerHeight));
+  nav.classList.toggle('scrolled', y > 8);
+  if (y <= nav.offsetHeight || navLinks.classList.contains('open')) {
+    nav.classList.remove('nav-hidden');
+  } else if (Math.abs(y - lastNavY) >= 6) {
+    nav.classList.toggle('nav-hidden', y > lastNavY);
+  } else {
+    return;
+  }
+  lastNavY = y;
+}, {passive:true});
 navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
 navLinks.addEventListener('click', e => { if(e.target.tagName==='A') navLinks.classList.remove('open'); });
 
@@ -964,82 +891,6 @@ document.querySelectorAll('[data-glow]').forEach(card => {
   }, 450);
 })();
 
-/* ---- form validation + submit ---- */
-const form = document.getElementById('leadForm');
-const statusEl = document.getElementById('formStatus');
-const submitBtn = document.getElementById('submitBtn');
-const spinner = document.getElementById('spinner');
-const btnText = document.getElementById('btnText');
-
-function setInvalid(id, bad){ document.getElementById(id).classList.toggle('invalid', bad); }
-function showStatus(type, msg){
-  statusEl.className = 'form-status show ' + type;
-  statusEl.innerHTML = msg;
-}
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const name = form.name.value.trim();
-  const contact = form.contact.value.trim();
-  const task = form.task.value.trim();
-
-  let ok = true;
-  setInvalid('f-name', !name); if(!name) ok=false;
-  setInvalid('f-contact', !contact); if(!contact) ok=false;
-  if(!ok){ showStatus('bad','Заполните обязательные поля.'); return; }
-
-  // текст заявки, который придёт в Telegram через релей
-  const text =
-    '🟢 Новая заявка с сайта — Aigiz Project\n' +
-    '────────────────\n' +
-    'Имя: ' + name + '\n' +
-    'Контакт: ' + contact + '\n' +
-    'Задача: ' + (task || '—') + '\n' +
-    'Время: ' + new Date().toLocaleString('ru-RU');
-
-  // loading state
-  submitBtn.disabled = true;
-  spinner.style.display = 'inline-block';
-  btnText.textContent = 'Отправляю…';
-  statusEl.className = 'form-status';
-
-  // если релей не настроен — мягкий фолбэк на Telegram-чат
-  if(!WEBHOOK_URL){
-    const tg = encodeURIComponent('Заявка с сайта\nИмя: '+name+'\nКонтакт: '+contact+'\nЗадача: '+(task||'—'));
-    showStatus('ok', 'Релей ещё не подключён. Открываю Telegram — отправьте заявку туда 👉');
-    setTimeout(()=> window.open(TELEGRAM_URL+'?text='+tg, '_blank'), 600);
-    resetBtn(); return;
-  }
-
-  try{
-    // Apps Script не отдаёт CORS-заголовки, поэтому шлём no-cors + text/plain
-    // (тело JSON {text} релей читает из e.postData.contents и парсит сам).
-    await fetch(WEBHOOK_URL, {
-      method:'POST',
-      mode:'no-cors',
-      headers:{'Content-Type':'text/plain;charset=utf-8'},
-      body: JSON.stringify({ text })
-    });
-    // при no-cors ответ непрозрачный — если fetch не упал, заявка ушла
-    showStatus('ok', '✓ Заявка отправлена! Свяжусь с вами в ближайшее время.');
-    form.reset();
-  }catch(err){
-    showStatus('bad', 'Не удалось отправить. Напишите, пожалуйста, в <a href="'+TELEGRAM_URL+'" target="_blank" style="color:inherit;text-decoration:underline">Telegram</a>.');
-  }finally{
-    resetBtn();
-  }
-});
-
-function resetBtn(){
-  submitBtn.disabled = false;
-  spinner.style.display = 'none';
-  btnText.textContent = 'Отправить заявку';
-}
-
-/* clear invalid on input */
-['name','contact'].forEach(id=>{
-  form[id].addEventListener('input', ()=> setInvalid('f-'+id, false));
-});
 </script>
 </body>
 </html>
