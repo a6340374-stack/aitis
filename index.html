@@ -407,6 +407,10 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
 .work-spain{--paper:#efd2a9;--ink:#392a20}
 .work-umra{--paper:#254b41;--ink:#f2e8c8}
 .work-station{--paper:#b6cddd;--ink:#1c3141}
+.work-dispatch{--paper:#bed4c5;--ink:#17372c}
+.work-parser{--paper:#32324c;--ink:#faf0da}
+.work-parser .work-title,.work-dispatch .work-title{font-size:clamp(22px,8cqw,44px)}
+.work-dispatch .work-cover img{width:34%;top:8%;right:6%}
 .work-cover::before{content:"";position:absolute;inset:0 0 0 42%;opacity:.22;background:repeating-linear-gradient(125deg,transparent 0 13px,currentColor 14px,transparent 15px)}
 .work-cover img{position:absolute;width:65%;height:auto;top:12%;right:-8%;transform:rotate(-5deg);box-shadow:0 8px 20px #0003}
 .work-cover::after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(0deg,var(--paper) 0%,transparent 96%);z-index:0}
@@ -763,6 +767,28 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
     </div>
     <div class="projects">
       <article>
+        <a class="work-card work-dispatch" href="cases/dispatch.html" aria-label="Открыть кейс «Диспетчерская Алины»">
+          <div class="work-cover">
+            <span class="work-type">Внутренняя CRM</span>
+            <img src="prj/dispatch.jpg" width="318" height="504" loading="lazy" alt="">
+            <h3 class="work-title">Диспетчерская<br>Алины</h3>
+          </div>
+          <p class="work-copy">Нутрициолог ведёт переписку с клиентами, заказы магазина и цепочки сообщений в одном окне.</p>
+          <span class="work-link">Открыть кейс</span>
+        </a>
+      </article>
+      <article>
+        <a class="work-card work-parser" href="cases/parser.html" aria-label="Открыть кейс «Парсер Telegram-каналов»">
+          <div class="work-cover">
+            <span class="work-type">Мониторинг сообщений</span>
+            <img src="prj/parser.jpg" width="930" height="471" loading="lazy" alt="">
+            <h3 class="work-title">Парсер<br>Telegram-каналов</h3>
+          </div>
+          <p class="work-copy">Парсер находит сообщения с заданными словами в Telegram и передаёт совпадения в бота или CRM.</p>
+          <span class="work-link">Открыть кейс</span>
+        </a>
+      </article>
+      <article>
         <a class="work-card work-moto-site" href="cases/moto-site.html" aria-label="Открыть кейс «Мотоподбор Дмитрия»">
           <div class="work-cover">
             <span class="work-type">Сайт эксперта</span>
@@ -852,14 +878,6 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
       </article>
     </div>
     <h3 class="work-other">Другие проекты</h3>
-    <article class="work-row">
-      <div><span class="work-status">Внутренняя система · 2026</span><h4>Диспетчерская</h4></div>
-      <div><p>Рабочее место владельца: все диалоги из Telegram в одном окне, заказы, товары, цепочки сообщений, уведомления на телефон. Внутри же магазин и конструктор смузи, через которые клиент оформляет заказ.</p><small>Python, FastAPI, PostgreSQL, Telegram-боты, PWA с push</small></div>
-    </article>
-    <article class="work-row">
-      <div><span class="work-status">Свой инструмент · 2026</span><h4>Парсер Telegram</h4></div>
-      <div><p>Следит за чатами по ключевым словам и отправляет подходящие сообщения дальше — в бота или CRM. Вход по QR-коду, без ввода кода из SMS. Лог отбора виден в реальном времени.</p><small>Telethon, FastAPI, React, Docker</small></div>
-    </article>
     <article class="work-row">
       <div><span class="work-status">Дорабатывается · 2026</span><h4>Эвакуатор в Уфе</h4></div>
       <div><p>Страница под срочный вызов: телефон в первом экране, цены, работа круглосуточно. Собрана под запросы, с которыми эвакуатор ищут ночью.</p><small>Лендинг под поисковый спрос</small></div>
