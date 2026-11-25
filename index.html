@@ -362,23 +362,23 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
 .work-cover::before{content:"";position:absolute;inset:0 0 0 42%;opacity:.22;background:repeating-linear-gradient(125deg,transparent 0 13px,currentColor 14px,transparent 15px)}
 .work-cover img{position:absolute;width:65%;height:auto;top:12%;right:-8%;transform:rotate(-5deg);box-shadow:0 8px 20px #0003}
 .work-cover::after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(0deg,var(--paper) 0%,transparent 96%);z-index:0}
-.work-type,.work-status{font:13px/1.5 'Geist Mono',monospace}
-.work-status{color:var(--muted)}
+.work-type{font:13px/1.5 'Geist Mono',monospace}
+
 .work-type,.work-title{position:absolute;left:5%;z-index:1}
 .work-type{top:6%;font-size:clamp(10px,2.5cqw,14px);letter-spacing:.06em;text-transform:uppercase}
 .work-title{bottom:6%;font-size:clamp(24px,9cqw,50px);letter-spacing:-.05em;line-height:.98;font-weight:650}
 .work-copy{margin:14px 0 12px;color:var(--muted);max-width:60ch}
 .work-link{font-weight:550;text-decoration:underline;text-underline-offset:4px}
 .work-card:hover .work-link,.work-card:focus-visible .work-link{color:var(--accent)}
-.work-other{margin:64px 0 20px;font-size:clamp(24px,3vw,34px)}
-.work-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.8fr);gap:24px;border-top:1px solid var(--line);padding:22px 0}
-.work-row h4{font-size:20px;margin-top:4px}
-.work-row p{color:var(--muted)}
-.work-row small{display:block;margin-top:8px}
+
+
+
+
+
 @media(max-width:680px){
-  .projects,.work-row{grid-template-columns:1fr}
+  .projects{grid-template-columns:1fr}
   .projects{gap:36px}
-  .work-row{gap:8px}
+
 }
 /* на узкой шапке логотип ужимается до «~ aigiz», иначе кнопка наезжает */
 @media (max-width:560px){
@@ -756,15 +756,6 @@ footer{border-top:1px solid var(--line);padding:44px 0;margin-top:60px}
         </a>
       </article>
     </div>
-    <h3 class="work-other">Другие проекты</h3>
-    <article class="work-row">
-      <div><span class="work-status">Дорабатывается · 2026</span><h4>Эвакуатор в Уфе</h4></div>
-      <div><p>Страница под срочный вызов: телефон в первом экране, цены, работа круглосуточно. Собрана под запросы, с которыми эвакуатор ищут ночью.</p><small>Лендинг под поисковый спрос</small></div>
-    </article>
-    <article class="work-row">
-      <div><span class="work-status">Сценарии под задачу · 2026</span><h4>Автоматизации на n8n</h4></div>
-      <div><p>Сценарии, которые работают без участия человека: обратный звонок в такси, сбор контактов заведений с карт, постинг во «ВКонтакте» по расписанию.</p><small>n8n, вебхуки, Google Sheets, API мессенджеров</small></div>
-    </article>
   </div>
 </section>
 
